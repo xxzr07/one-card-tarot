@@ -1,0 +1,17 @@
+{
+  "name": "ONE CARD — Daily Tarot",
+  "short_name": "ONE CARD",
+  "description": "一日一枚のカードと、象徴から生まれる短い問いに触れるタロットPWA",
+  "lang": "ja",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b0c0f",
+  "theme_color": "#0b0c0f",
+  "icons": [
+    { "src": "./assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
