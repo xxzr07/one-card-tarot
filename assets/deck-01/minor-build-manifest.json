@@ -1,0 +1,403 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-22T13:44:37.219Z",
+  "canonicalSourceDirectory": "assets/deck-01",
+  "generator": "tools/generate-minor.cjs",
+  "generatorSha256": "facf26f47e523b35ad8aa7f7e6def9b482430d68efe9288bae0f6d89aafdea33",
+  "minorSetSha256": "fa35a119b61142c62b96eccb677e51c42d6845b6a20e7cbab5c1c68288e9c5f7",
+  "count": 56,
+  "files": [
+    {
+      "id": "wands-ace",
+      "path": "assets/deck-01/wands-ace.png",
+      "size": 514549,
+      "mtime": "2026-07-22T13:44:37.172Z",
+      "sha256": "8b91225c4d9f12c6cba8afd132e0f8e517402f836788bafb7680042bff6bb243"
+    },
+    {
+      "id": "wands-02",
+      "path": "assets/deck-01/wands-02.png",
+      "size": 503909,
+      "mtime": "2026-07-22T13:44:37.172Z",
+      "sha256": "a5de8295cc60ebb6d6a2a33c465a1e023b4d5ca0f1be9618c733d6d7e168a2fc"
+    },
+    {
+      "id": "wands-03",
+      "path": "assets/deck-01/wands-03.png",
+      "size": 509352,
+      "mtime": "2026-07-22T13:44:37.172Z",
+      "sha256": "ec8d159376bcf409dfac19d9611d5c2f7052aa778acfe113babd2e8aa2b2775b"
+    },
+    {
+      "id": "wands-04",
+      "path": "assets/deck-01/wands-04.png",
+      "size": 513139,
+      "mtime": "2026-07-22T13:44:37.172Z",
+      "sha256": "31f79ce1f9ec34f752226a1bc41e09739343100b796f4d1df333b616fa7357cd"
+    },
+    {
+      "id": "wands-05",
+      "path": "assets/deck-01/wands-05.png",
+      "size": 543485,
+      "mtime": "2026-07-22T13:44:37.172Z",
+      "sha256": "32a15dd0e4cb2fc865b66b9ae82a572f1b6eeaacba1624c2926ad77e8b32f277"
+    },
+    {
+      "id": "wands-06",
+      "path": "assets/deck-01/wands-06.png",
+      "size": 518558,
+      "mtime": "2026-07-22T13:44:37.176Z",
+      "sha256": "b4d1c582e62366a34fcbd9ec5f8d479ee471e3c1375311ac3e1165a7c1e4bd8c"
+    },
+    {
+      "id": "wands-07",
+      "path": "assets/deck-01/wands-07.png",
+      "size": 554934,
+      "mtime": "2026-07-22T13:44:37.176Z",
+      "sha256": "4c27a37959fbd15e6046db700dd86c75d9589f791b8dff65ffe53d6d1ca3580a"
+    },
+    {
+      "id": "wands-08",
+      "path": "assets/deck-01/wands-08.png",
+      "size": 516850,
+      "mtime": "2026-07-22T13:44:37.176Z",
+      "sha256": "34e53b6201044db08424e48d8df7c36ef25ca59d778125afa31641b9db350182"
+    },
+    {
+      "id": "wands-09",
+      "path": "assets/deck-01/wands-09.png",
+      "size": 515028,
+      "mtime": "2026-07-22T13:44:37.176Z",
+      "sha256": "1c364d31befc0f6957b238aab70d45ef42f6b16c132bebeb16b39cc9a38a944d"
+    },
+    {
+      "id": "wands-10",
+      "path": "assets/deck-01/wands-10.png",
+      "size": 571052,
+      "mtime": "2026-07-22T13:44:37.176Z",
+      "sha256": "64210c31e00d1b9a3f3bb111436df9f36e11dc7dfabd9f50c6ef6ff2126c33c2"
+    },
+    {
+      "id": "wands-page",
+      "path": "assets/deck-01/wands-page.png",
+      "size": 497051,
+      "mtime": "2026-07-22T13:44:37.176Z",
+      "sha256": "4fdad574d286dffe16b6a5e00df608a38f6ac89049570108f6f1f2ebc4f19a71"
+    },
+    {
+      "id": "wands-knight",
+      "path": "assets/deck-01/wands-knight.png",
+      "size": 516021,
+      "mtime": "2026-07-22T13:44:37.176Z",
+      "sha256": "938f61874a1744c1b0c9818ce6c8d3f87364f6c94f588780f761af1eada1d0c7"
+    },
+    {
+      "id": "wands-queen",
+      "path": "assets/deck-01/wands-queen.png",
+      "size": 483046,
+      "mtime": "2026-07-22T13:44:37.176Z",
+      "sha256": "1e1c5e9e71d1a1094e571b7836780c2673fce01aef1fef28cb5908b95cb9b26a"
+    },
+    {
+      "id": "wands-king",
+      "path": "assets/deck-01/wands-king.png",
+      "size": 479187,
+      "mtime": "2026-07-22T13:44:37.176Z",
+      "sha256": "e44a5df0747dcfbb17a8ddb27197ca410cee05ba7c0c9c94f101059065ad5200"
+    },
+    {
+      "id": "cups-ace",
+      "path": "assets/deck-01/cups-ace.png",
+      "size": 517571,
+      "mtime": "2026-07-22T13:44:37.176Z",
+      "sha256": "74b9b5a1632c07bc05d278d7ffce14a3006bd5c2fb922de4ebf528365acd8514"
+    },
+    {
+      "id": "cups-02",
+      "path": "assets/deck-01/cups-02.png",
+      "size": 517813,
+      "mtime": "2026-07-22T13:44:37.176Z",
+      "sha256": "5e33ce92858300bad96cee7233fdcda9827a61531e4136232ae4d446d389ba65"
+    },
+    {
+      "id": "cups-03",
+      "path": "assets/deck-01/cups-03.png",
+      "size": 509263,
+      "mtime": "2026-07-22T13:44:37.176Z",
+      "sha256": "1b177704236be9b94c918398d178b3ad8ddc062a1858ac1f52f95770b22e1a73"
+    },
+    {
+      "id": "cups-04",
+      "path": "assets/deck-01/cups-04.png",
+      "size": 512687,
+      "mtime": "2026-07-22T13:44:37.176Z",
+      "sha256": "c79e8b96c7c72ac24e05323affa7820bc14b2d89dbf585ecae04582655ccba30"
+    },
+    {
+      "id": "cups-05",
+      "path": "assets/deck-01/cups-05.png",
+      "size": 516398,
+      "mtime": "2026-07-22T13:44:37.180Z",
+      "sha256": "e83d2e0dcccbc666d4a810c1abb28b37fccf1f5f04bb741105f9a855a80cfdd6"
+    },
+    {
+      "id": "cups-06",
+      "path": "assets/deck-01/cups-06.png",
+      "size": 518187,
+      "mtime": "2026-07-22T13:44:37.180Z",
+      "sha256": "50f38043c3c6adbf7ed41922a7629f56450e303c3180d91ff49ca379424f7c6c"
+    },
+    {
+      "id": "cups-07",
+      "path": "assets/deck-01/cups-07.png",
+      "size": 523142,
+      "mtime": "2026-07-22T13:44:37.180Z",
+      "sha256": "227c19b2221eebb11cc3782c1e35b98909a159f902b26346de5203cf64977075"
+    },
+    {
+      "id": "cups-08",
+      "path": "assets/deck-01/cups-08.png",
+      "size": 507583,
+      "mtime": "2026-07-22T13:44:37.180Z",
+      "sha256": "57ed22432ce0f013dfbda7b18aac9107cee054233eb989d23ac8b68db34b2cdc"
+    },
+    {
+      "id": "cups-09",
+      "path": "assets/deck-01/cups-09.png",
+      "size": 508591,
+      "mtime": "2026-07-22T13:44:37.180Z",
+      "sha256": "de182efbd35e1bb7f49c01ffb230f7abfd4a0b227c7ccf0c5cc639f9c4dc1a04"
+    },
+    {
+      "id": "cups-10",
+      "path": "assets/deck-01/cups-10.png",
+      "size": 515879,
+      "mtime": "2026-07-22T13:44:37.180Z",
+      "sha256": "419b849eea965b37fe4680e205a7cd9946cbcd5204360f682b909480e38ca2f5"
+    },
+    {
+      "id": "cups-page",
+      "path": "assets/deck-01/cups-page.png",
+      "size": 492539,
+      "mtime": "2026-07-22T13:44:37.180Z",
+      "sha256": "f515dd47943c1be232bf01cc210f756bb5ac6f5caa6ab1db25dca5b552510008"
+    },
+    {
+      "id": "cups-knight",
+      "path": "assets/deck-01/cups-knight.png",
+      "size": 501328,
+      "mtime": "2026-07-22T13:44:37.180Z",
+      "sha256": "ff05068bfd4366f16e744105b1796c64598115bab4e19786c9c52450ea3f7aea"
+    },
+    {
+      "id": "cups-queen",
+      "path": "assets/deck-01/cups-queen.png",
+      "size": 480562,
+      "mtime": "2026-07-22T13:44:37.180Z",
+      "sha256": "65b2f004b2d41c4d2a7cf7f239bfeb8f72ca3397e4c161c0fa2acae4a8ad8301"
+    },
+    {
+      "id": "cups-king",
+      "path": "assets/deck-01/cups-king.png",
+      "size": 475042,
+      "mtime": "2026-07-22T13:44:37.180Z",
+      "sha256": "142f078cf719c6d409562a4e5d7e824992db0d1fe429fb11146966f8d0f82cee"
+    },
+    {
+      "id": "swords-ace",
+      "path": "assets/deck-01/swords-ace.png",
+      "size": 522723,
+      "mtime": "2026-07-22T13:44:37.180Z",
+      "sha256": "04270cee3612e52ba76c7b0b4303ecea87d6267b714fcadeaf808856f1079dd2"
+    },
+    {
+      "id": "swords-02",
+      "path": "assets/deck-01/swords-02.png",
+      "size": 528326,
+      "mtime": "2026-07-22T13:44:37.180Z",
+      "sha256": "6baa56401821ef7eb28300edc68b422d577febff3b4a66eaf8f02a32df44674c"
+    },
+    {
+      "id": "swords-03",
+      "path": "assets/deck-01/swords-03.png",
+      "size": 552685,
+      "mtime": "2026-07-22T13:44:37.180Z",
+      "sha256": "a1097b6604f8d9218be5d8ad486facf400dee596ddf4e8e059efe2c3aa370f42"
+    },
+    {
+      "id": "swords-04",
+      "path": "assets/deck-01/swords-04.png",
+      "size": 510652,
+      "mtime": "2026-07-22T13:44:37.180Z",
+      "sha256": "16374a849b7e01cee2af02af18d1f5c31b217fdaa1219cdbbb229c8f5590c9ec"
+    },
+    {
+      "id": "swords-05",
+      "path": "assets/deck-01/swords-05.png",
+      "size": 546257,
+      "mtime": "2026-07-22T13:44:37.180Z",
+      "sha256": "1dac1e187ef295f1321c0897571c50a986feb1d5854b29d983c8aa66c6e2e9b0"
+    },
+    {
+      "id": "swords-06",
+      "path": "assets/deck-01/swords-06.png",
+      "size": 490306,
+      "mtime": "2026-07-22T13:44:37.184Z",
+      "sha256": "49c477a17ae70b904364f0218a601a0b9a5acbac9d453ae3c6dc43f6ad3b211e"
+    },
+    {
+      "id": "swords-07",
+      "path": "assets/deck-01/swords-07.png",
+      "size": 547524,
+      "mtime": "2026-07-22T13:44:37.184Z",
+      "sha256": "fd5d92d4dfd27f6d2073c3bd88de27f160b1802161ebb7020d72bdd3f9b2d867"
+    },
+    {
+      "id": "swords-08",
+      "path": "assets/deck-01/swords-08.png",
+      "size": 536098,
+      "mtime": "2026-07-22T13:44:37.184Z",
+      "sha256": "e32171858b4973faca938a2918fe656ac1b4f5c16b4f8c2880f80ae4b16fda91"
+    },
+    {
+      "id": "swords-09",
+      "path": "assets/deck-01/swords-09.png",
+      "size": 596767,
+      "mtime": "2026-07-22T13:44:37.184Z",
+      "sha256": "b3c02b569a3d3b6825caf5de781c53978715c8e47afc9f320df7aa83449f2bb5"
+    },
+    {
+      "id": "swords-10",
+      "path": "assets/deck-01/swords-10.png",
+      "size": 558142,
+      "mtime": "2026-07-22T13:44:37.184Z",
+      "sha256": "4c91b4dd918de55e94eee3d1b7cf6b285c9a0982c1f238a3ee6a1c86d59777af"
+    },
+    {
+      "id": "swords-page",
+      "path": "assets/deck-01/swords-page.png",
+      "size": 500921,
+      "mtime": "2026-07-22T13:44:37.184Z",
+      "sha256": "f80a97fbc3e1edb97a9d0edbec15b4d42a7fc1a8409213b622ba99d3d3378b08"
+    },
+    {
+      "id": "swords-knight",
+      "path": "assets/deck-01/swords-knight.png",
+      "size": 515936,
+      "mtime": "2026-07-22T13:44:37.184Z",
+      "sha256": "722d4fea6bc2f3b7556329e238ad270ad97d5b838b55e40b093b8388d4a4cfb7"
+    },
+    {
+      "id": "swords-queen",
+      "path": "assets/deck-01/swords-queen.png",
+      "size": 486371,
+      "mtime": "2026-07-22T13:44:37.184Z",
+      "sha256": "b89ce2cf34edd3dbdc246c731fa9e14409330a5e3271d009d5974283e71be40f"
+    },
+    {
+      "id": "swords-king",
+      "path": "assets/deck-01/swords-king.png",
+      "size": 485011,
+      "mtime": "2026-07-22T13:44:37.184Z",
+      "sha256": "7273ead8e0ab85054981e668a483f1bdc6f9e328c730aac70b806adbf627958a"
+    },
+    {
+      "id": "pentacles-ace",
+      "path": "assets/deck-01/pentacles-ace.png",
+      "size": 522595,
+      "mtime": "2026-07-22T13:44:37.184Z",
+      "sha256": "dcf53f6b605add0c706ca809f300419e584a638a45fd0d9ea9cb3c648a569244"
+    },
+    {
+      "id": "pentacles-02",
+      "path": "assets/deck-01/pentacles-02.png",
+      "size": 532320,
+      "mtime": "2026-07-22T13:44:37.184Z",
+      "sha256": "9d3c2ae3fcbcc00dc85f385dec85d138b27a081b293d491dead59cdc89649d18"
+    },
+    {
+      "id": "pentacles-03",
+      "path": "assets/deck-01/pentacles-03.png",
+      "size": 506208,
+      "mtime": "2026-07-22T13:44:37.184Z",
+      "sha256": "19bf8030bd7603649690e268742fdce33b47e786f498cddaff7e91c3665dd788"
+    },
+    {
+      "id": "pentacles-04",
+      "path": "assets/deck-01/pentacles-04.png",
+      "size": 511100,
+      "mtime": "2026-07-22T13:44:37.184Z",
+      "sha256": "ac24342dc1780f47cc3d66172f1e888e08f8f9c9a62d278e9bb6a1bd9552a797"
+    },
+    {
+      "id": "pentacles-05",
+      "path": "assets/deck-01/pentacles-05.png",
+      "size": 578590,
+      "mtime": "2026-07-22T13:44:37.184Z",
+      "sha256": "28f6b66fbf7fe457200ec41252db4ef35ce852589b6f725b294c678a99a04227"
+    },
+    {
+      "id": "pentacles-06",
+      "path": "assets/deck-01/pentacles-06.png",
+      "size": 518018,
+      "mtime": "2026-07-22T13:44:37.188Z",
+      "sha256": "20171c14c3bd3b0bd86d5d903e6351b4ff12a470b8e463de67bb1f03cb7e98a8"
+    },
+    {
+      "id": "pentacles-07",
+      "path": "assets/deck-01/pentacles-07.png",
+      "size": 538839,
+      "mtime": "2026-07-22T13:44:37.188Z",
+      "sha256": "7c08eda15f6364de0a225e4c151cde5d8a8900510fc87c65e5bdb82f38eeb421"
+    },
+    {
+      "id": "pentacles-08",
+      "path": "assets/deck-01/pentacles-08.png",
+      "size": 541912,
+      "mtime": "2026-07-22T13:44:37.188Z",
+      "sha256": "f8bf91ad7a8c8e66ea1c163ce1a9d304c1edfd16fa4791e980382540d0ac555b"
+    },
+    {
+      "id": "pentacles-09",
+      "path": "assets/deck-01/pentacles-09.png",
+      "size": 552604,
+      "mtime": "2026-07-22T13:44:37.188Z",
+      "sha256": "78c1cec112ed68dcf4e93a700661dcec8497cbf3e81acf5d06761fef61d33bf4"
+    },
+    {
+      "id": "pentacles-10",
+      "path": "assets/deck-01/pentacles-10.png",
+      "size": 539523,
+      "mtime": "2026-07-22T13:44:37.188Z",
+      "sha256": "9f09494a321ba65a7bb2af5e6fddb813ba5de7af01631165e5a7e8a4540a2436"
+    },
+    {
+      "id": "pentacles-page",
+      "path": "assets/deck-01/pentacles-page.png",
+      "size": 500431,
+      "mtime": "2026-07-22T13:44:37.188Z",
+      "sha256": "e95868d9be39bce8313a7b18ed38654150faf3aeaabb776a25a170b946e2d0b6"
+    },
+    {
+      "id": "pentacles-knight",
+      "path": "assets/deck-01/pentacles-knight.png",
+      "size": 510645,
+      "mtime": "2026-07-22T13:44:37.188Z",
+      "sha256": "ca2bc2df99714e6e37ef08a942ef6485ebf5b3e72f82517fe4f4f15be1aed0f3"
+    },
+    {
+      "id": "pentacles-queen",
+      "path": "assets/deck-01/pentacles-queen.png",
+      "size": 491482,
+      "mtime": "2026-07-22T13:44:37.188Z",
+      "sha256": "bedc2fcf7690e3cb8005480b1c779b1cafe7cdb685543dd167a360795809c114"
+    },
+    {
+      "id": "pentacles-king",
+      "path": "assets/deck-01/pentacles-king.png",
+      "size": 481285,
+      "mtime": "2026-07-22T13:44:37.188Z",
+      "sha256": "1bd4008dd448e15224d029c6aec4471df1c013ad3138c09cf4fe8417a7eb6ace"
+    }
+  ]
+}

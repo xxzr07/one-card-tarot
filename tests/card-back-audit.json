@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-22T14:40:14.742Z",
+  "deckId": "deck-01",
+  "backImage": "assets/deck-01/card-back.png",
+  "backImageSha256": "545c3b3824e96f32e99f545a9c4185c66c708939e80ff88ebf332a575183c409",
+  "dimensions": "612x1206",
+  "sharedCornerRadius": 30,
+  "transparentOuterCorners": true,
+  "cardsUsingThisBack": 78,
+  "preDrawOrientation": "always-upright",
+  "faceOrientationAfterDraw": "reading-orientation"
+}

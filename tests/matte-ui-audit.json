@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-22T14:40:01.971Z",
+  "referenceDirection": "A. pure MATTE only",
+  "viewport": {
+    "width": 390,
+    "height": 664
+  },
+  "screensChecked": [
+    "TODAY before draw",
+    "TODAY after draw — light/upright",
+    "TODAY after draw — dark/reversed",
+    "HISTORY month",
+    "HISTORY past detail",
+    "SETTINGS"
+  ],
+  "lightCard": {
+    "backgroundImage": "url(\"http://127.0.0.1:4173/assets/deck-01/major-00.png\")",
+    "transform": "none"
+  },
+  "darkCard": {
+    "backgroundImage": "url(\"http://127.0.0.1:4173/assets/deck-01/swords-09.png\")",
+    "transform": "matrix(-1, 0, 0, -1, 0, 0)"
+  },
+  "historyMarkers": 3,
+  "historyDetailDate": "2026-07-20 · DECK 01",
+  "layout": {
+    "viewport": {
+      "width": 390,
+      "height": 664
+    },
+    "horizontalOverflow": false,
+    "backgroundColor": "rgb(11, 12, 15)",
+    "navigationBackground": "rgb(16, 18, 22)",
+    "navigationBackdropFilter": "none",
+    "minNavigationTargetHeight": 48,
+    "hakkouLoaded": true
+  },
+  "browserErrors": []
+}

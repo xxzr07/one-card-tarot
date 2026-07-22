@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-22T22:47:43+09:00",
+  "cardCount": 78,
+  "sharedCornerRadius": 30,
+  "transparentOuterCorners": true,
+  "normalBackgroundColor": "#f2eee6",
+  "normalMajorBaseLuminance": 230.12,
+  "normalMinorBaseLuminance": 230.42,
+  "luminanceDifference": 0.29,
+  "majorArcana": {
+    "count": 22,
+    "interiorRgbMaxDifferenceFromPreviousVersion": 0,
+    "setSha256": "67ef56c174081e8fd5a566519341bebe7f66f24d0c66a68ed54de55529153b38"
+  },
+  "darkMinorArcana": {
+    "ids": ["swords-09", "swords-10", "pentacles-05"],
+    "interiorRgbMaxDifferenceFromPreviousVersion": 0
+  },
+  "minorArcana": {
+    "count": 56,
+    "setSha256": "fa35a119b61142c62b96eccb677e51c42d6845b6a20e7cbab5c1c68288e9c5f7"
+  },
+  "deckSetSha256": "5be66afc22d505ed87aa0db145334f00f01faca18030c8ee47bc1a5451c3068e"
+}
