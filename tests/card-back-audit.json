@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-23T14:23:38.023Z",
+  "generatedAt": "2026-07-23T15:43:05.307Z",
   "deckId": "deck-01",
   "backImage": "decks/deck-01/back.png",
-  "backImageSha256": "e4704b000819db30622c9c95e02ec0a35d3abe2dcd48196630a2cd2f36d81005",
+  "backImageSha256": "91120b946e2321505df1c77c16b90b0d1831e067cd17a4d3de92341fa981dd04",
   "dimensions": "612x1206",
   "sharedCornerRadius": 30,
   "transparentOuterCorners": true,
-  "softenedAntialiasEdge": true,
+  "onePassAntialiasEdge": true,
   "cardsUsingThisBack": 78,
   "preDrawOrientation": "always-upright",
   "faceOrientationAfterDraw": "reading-orientation"

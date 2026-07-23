@@ -31,8 +31,8 @@ async function main() {
     [0, CARD_HEIGHT - 24],
     [CARD_WIDTH - 1, CARD_HEIGHT - 24]
   ].map(([x, y]) => alphaAt(x, y));
-  if (Math.max(...antialiasSamples) > 40) {
-    throw new Error(`Back image has an overly opaque corner edge (${antialiasSamples.join(", ")})`);
+  if (Math.min(...antialiasSamples) <= 0 || Math.max(...antialiasSamples) >= 255) {
+    throw new Error(`Back image lacks a one-pass antialiased corner edge (${antialiasSamples.join(", ")})`);
   }
   if (Object.keys(deck.cards).length !== 78) throw new Error("Deck 01 must use one back for all 78 cards");
 
@@ -50,7 +50,7 @@ async function main() {
     dimensions: `${CARD_WIDTH}x${CARD_HEIGHT}`,
     sharedCornerRadius: CARD_RADIUS,
     transparentOuterCorners: true,
-    softenedAntialiasEdge: true,
+    onePassAntialiasEdge: true,
     cardsUsingThisBack: Object.keys(deck.cards).length,
     preDrawOrientation: "always-upright",
     faceOrientationAfterDraw: "reading-orientation"

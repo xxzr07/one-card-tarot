@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Card corner minimal reproduction</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      background: #14151a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 24px;
+      background: #14151a;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 306px);
+      gap: 24px;
+    }
+
+    .card,
+    .flip-face {
+      width: 306px;
+      height: 603px;
+      overflow: hidden;
+      border-radius: 4.902% / 2.488%;
+      background: #14151a;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .card img,
+    .flip-face img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .flip-scene {
+      width: 306px;
+      height: 603px;
+      perspective: 1200px;
+    }
+
+    .flip-card {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card.is-flipped {
+      transform: rotateY(180deg);
+    }
+
+    .flip-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+    }
+
+    .flip-face.front {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+<body>
+  <main class="grid">
+    <div class="card sample" data-sample="background-back"
+      style="background-image:url('../decks/deck-01/back.png')"></div>
+    <div class="card sample" data-sample="background-major"
+      style="background-image:url('../decks/deck-01/cards/major-13.png')"></div>
+    <div class="card sample" data-sample="background-minor"
+      style="background-image:url('../decks/deck-01/cards/swords-09.png')"></div>
+
+    <div class="card sample" data-sample="img-back">
+      <img src="../decks/deck-01/back.png" alt="">
+    </div>
+    <div class="card sample" data-sample="img-major">
+      <img src="../decks/deck-01/cards/major-13.png" alt="">
+    </div>
+    <div class="card sample" data-sample="img-minor">
+      <img src="../decks/deck-01/cards/swords-09.png" alt="">
+    </div>
+
+    <div class="flip-scene">
+      <div class="flip-card">
+        <div class="flip-face sample" data-sample="flip-back"
+          style="background-image:url('../decks/deck-01/back.png')"></div>
+        <div class="flip-face front">
+          <img src="../decks/deck-01/cards/major-13.png" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="flip-scene">
+      <div class="flip-card is-flipped">
+        <div class="flip-face"
+          style="background-image:url('../decks/deck-01/back.png')"></div>
+        <div class="flip-face front sample" data-sample="flip-major">
+          <img src="../decks/deck-01/cards/major-13.png" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="flip-scene">
+      <div class="flip-card is-flipped">
+        <div class="flip-face"
+          style="background-image:url('../decks/deck-01/back.png')"></div>
+        <div class="flip-face front sample" data-sample="flip-minor">
+          <img src="../decks/deck-01/cards/swords-09.png" alt="">
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

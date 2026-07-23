@@ -1,0 +1,1348 @@
+{
+  "schemaVersion": 1,
+  "baseCommit": "5745ed4993237465531cf5cd1c9e648302b261fe",
+  "dimensions": "612x1206",
+  "finalCornerRadius": 30,
+  "reconstructionCornerExtent": 60,
+  "targetCount": 23,
+  "targets": {
+    "decks/deck-01/back.png": {
+      "sha256": "91120b946e2321505df1c77c16b90b0d1831e067cd17a4d3de92341fa981dd04",
+      "rgbPixelsChanged": 8439,
+      "alphaPixelsChanged": 214,
+      "changedBounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 611,
+        "maxY": 1205
+      },
+      "changedOutsideCorners": 0,
+      "centerPixelsChanged": 0,
+      "alphaMismatch": 0,
+      "antialiasPlaneMaxRgbError": 1,
+      "topLeftCornerRegions": {
+        "transparent": {
+          "pixels": 170,
+          "rgbMin": [
+            0,
+            0,
+            0
+          ],
+          "rgbMax": [
+            0,
+            0,
+            0
+          ]
+        },
+        "antialiased": {
+          "pixels": 53,
+          "rgbMin": [
+            192,
+            179,
+            196
+          ],
+          "rgbMax": [
+            194,
+            181,
+            198
+          ],
+          "alphaMin": 8,
+          "alphaMax": 252
+        },
+        "opaque": {
+          "pixels": 3498,
+          "rgbMin": [
+            162,
+            124,
+            35
+          ],
+          "rgbMax": [
+            211,
+            196,
+            216
+          ]
+        }
+      }
+    },
+    "decks/deck-01/cards/major-00.png": {
+      "sha256": "11ca973e578032c11c1909c4f45f12c50b0b1630597d8f9700858a090a70b0b2",
+      "rgbPixelsChanged": 7743,
+      "alphaPixelsChanged": 214,
+      "changedBounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 611,
+        "maxY": 1205
+      },
+      "changedOutsideCorners": 0,
+      "centerPixelsChanged": 0,
+      "alphaMismatch": 0,
+      "antialiasPlaneMaxRgbError": 1,
+      "topLeftCornerRegions": {
+        "transparent": {
+          "pixels": 170,
+          "rgbMin": [
+            0,
+            0,
+            0
+          ],
+          "rgbMax": [
+            0,
+            0,
+            0
+          ]
+        },
+        "antialiased": {
+          "pixels": 53,
+          "rgbMin": [
+            233,
+            226,
+            218
+          ],
+          "rgbMax": [
+            234,
+            227,
+            219
+          ],
+          "alphaMin": 8,
+          "alphaMax": 252
+        },
+        "opaque": {
+          "pixels": 3498,
+          "rgbMin": [
+            59,
+            45,
+            28
+          ],
+          "rgbMax": [
+            246,
+            241,
+            233
+          ]
+        }
+      }
+    },
+    "decks/deck-01/cards/major-01.png": {
+      "sha256": "510f6b1f767c239ee7170451287679181fbefb1c035b4588239f4381fc54cb89",
+      "rgbPixelsChanged": 7653,
+      "alphaPixelsChanged": 214,
+      "changedBounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 611,
+        "maxY": 1205
+      },
+      "changedOutsideCorners": 0,
+      "centerPixelsChanged": 0,
+      "alphaMismatch": 0,
+      "antialiasPlaneMaxRgbError": 1,
+      "topLeftCornerRegions": {
+        "transparent": {
+          "pixels": 170,
+          "rgbMin": [
+            0,
+            0,
+            0
+          ],
+          "rgbMax": [
+            0,
+            0,
+            0
+          ]
+        },
+        "antialiased": {
+          "pixels": 53,
+          "rgbMin": [
+            236,
+            229,
+            221
+          ],
+          "rgbMax": [
+            237,
+            230,
+            222
+          ],
+          "alphaMin": 8,
+          "alphaMax": 252
+        },
+        "opaque": {
+          "pixels": 3498,
+          "rgbMin": [
+            169,
+            146,
+            110
+          ],
+          "rgbMax": [
+            242,
+            239,
+            234
+          ]
+        }
+      }
+    },
+    "decks/deck-01/cards/major-02.png": {
+      "sha256": "03a2f5675a391fb9645ac5578e701991c46d68ea2a4cd28d9191a2e2c1688e8b",
+      "rgbPixelsChanged": 7810,
+      "alphaPixelsChanged": 214,
+      "changedBounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 611,
+        "maxY": 1205
+      },
+      "changedOutsideCorners": 0,
+      "centerPixelsChanged": 0,
+      "alphaMismatch": 0,
+      "antialiasPlaneMaxRgbError": 1,
+      "topLeftCornerRegions": {
+        "transparent": {
+          "pixels": 170,
+          "rgbMin": [
+            0,
+            0,
+            0
+          ],
+          "rgbMax": [
+            0,
+            0,
+            0
+          ]
+        },
+        "antialiased": {
+          "pixels": 53,
+          "rgbMin": [
+            239,
+            233,
+            225
+          ],
+          "rgbMax": [
+            240,
+            234,
+            226
+          ],
+          "alphaMin": 8,
+          "alphaMax": 252
+        },
+        "opaque": {
+          "pixels": 3498,
+          "rgbMin": [
+            179,
+            155,
+            121
+          ],
+          "rgbMax": [
+            248,
+            244,
+            236
+          ]
+        }
+      }
+    },
+    "decks/deck-01/cards/major-03.png": {
+      "sha256": "a7fedeaa913d2fdfc3785470a1c821fab963fec6c9d9837a343c1141bf128895",
+      "rgbPixelsChanged": 7802,
+      "alphaPixelsChanged": 214,
+      "changedBounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 611,
+        "maxY": 1205
+      },
+      "changedOutsideCorners": 0,
+      "centerPixelsChanged": 0,
+      "alphaMismatch": 0,
+      "antialiasPlaneMaxRgbError": 1,
+      "topLeftCornerRegions": {
+        "transparent": {
+          "pixels": 170,
+          "rgbMin": [
+            0,
+            0,
+            0
+          ],
+          "rgbMax": [
+            0,
+            0,
+            0
+          ]
+        },
+        "antialiased": {
+          "pixels": 53,
+          "rgbMin": [
+            239,
+            231,
+            223
+          ],
+          "rgbMax": [
+            240,
+            232,
+            224
+          ],
+          "alphaMin": 8,
+          "alphaMax": 252
+        },
+        "opaque": {
+          "pixels": 3498,
+          "rgbMin": [
+            183,
+            160,
+            121
+          ],
+          "rgbMax": [
+            246,
+            244,
+            237
+          ]
+        }
+      }
+    },
+    "decks/deck-01/cards/major-04.png": {
+      "sha256": "5bc0bef429bb7c26113f6475b8d2d5edaf78d2a94396820602437a269e1093e0",
+      "rgbPixelsChanged": 8050,
+      "alphaPixelsChanged": 214,
+      "changedBounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 611,
+        "maxY": 1205
+      },
+      "changedOutsideCorners": 0,
+      "centerPixelsChanged": 0,
+      "alphaMismatch": 0,
+      "antialiasPlaneMaxRgbError": 1,
+      "topLeftCornerRegions": {
+        "transparent": {
+          "pixels": 170,
+          "rgbMin": [
+            0,
+            0,
+            0
+          ],
+          "rgbMax": [
+            0,
+            0,
+            0
+          ]
+        },
+        "antialiased": {
+          "pixels": 53,
+          "rgbMin": [
+            232,
+            223,
+            214
+          ],
+          "rgbMax": [
+            233,
+            224,
+            215
+          ],
+          "alphaMin": 8,
+          "alphaMax": 252
+        },
+        "opaque": {
+          "pixels": 3498,
+          "rgbMin": [
+            157,
+            122,
+            69
+          ],
+          "rgbMax": [
+            239,
+            232,
+            226
+          ]
+        }
+      }
+    },
+    "decks/deck-01/cards/major-05.png": {
+      "sha256": "a362cefe75a4cb21fdf9fa5b28d1d857dd06d1f435809b552cf9c14ffbf25226",
+      "rgbPixelsChanged": 7927,
+      "alphaPixelsChanged": 214,
+      "changedBounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 611,
+        "maxY": 1205
+      },
+      "changedOutsideCorners": 0,
+      "centerPixelsChanged": 0,
+      "alphaMismatch": 0,
+      "antialiasPlaneMaxRgbError": 1,
+      "topLeftCornerRegions": {
+        "transparent": {
+          "pixels": 170,
+          "rgbMin": [
+            0,
+            0,
+            0
+          ],
+          "rgbMax": [
+            0,
+            0,
+            0
+          ]
+        },
+        "antialiased": {
+          "pixels": 53,
+          "rgbMin": [
+            238,
+            231,
+            222
+          ],
+          "rgbMax": [
+            239,
+            232,
+            223
+          ],
+          "alphaMin": 8,
+          "alphaMax": 252
+        },
+        "opaque": {
+          "pixels": 3498,
+          "rgbMin": [
+            181,
+            156,
+            118
+          ],
+          "rgbMax": [
+            247,
+            244,
+            237
+          ]
+        }
+      }
+    },
+    "decks/deck-01/cards/major-06.png": {
+      "sha256": "77a81d25a97fa042632f535047428456ad6143c6f179db20673a8ccdc94d065e",
+      "rgbPixelsChanged": 8312,
+      "alphaPixelsChanged": 214,
+      "changedBounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 611,
+        "maxY": 1205
+      },
+      "changedOutsideCorners": 0,
+      "centerPixelsChanged": 0,
+      "alphaMismatch": 0,
+      "antialiasPlaneMaxRgbError": 1,
+      "topLeftCornerRegions": {
+        "transparent": {
+          "pixels": 170,
+          "rgbMin": [
+            0,
+            0,
+            0
+          ],
+          "rgbMax": [
+            0,
+            0,
+            0
+          ]
+        },
+        "antialiased": {
+          "pixels": 53,
+          "rgbMin": [
+            237,
+            229,
+            220
+          ],
+          "rgbMax": [
+            238,
+            230,
+            221
+          ],
+          "alphaMin": 8,
+          "alphaMax": 252
+        },
+        "opaque": {
+          "pixels": 3498,
+          "rgbMin": [
+            165,
+            134,
+            86
+          ],
+          "rgbMax": [
+            246,
+            245,
+            239
+          ]
+        }
+      }
+    },
+    "decks/deck-01/cards/major-07.png": {
+      "sha256": "6ecaeae7dfb38845e2efbbccaa25f25bf625d2c4f36fdf4b81e6261a02c28dfb",
+      "rgbPixelsChanged": 8424,
+      "alphaPixelsChanged": 214,
+      "changedBounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 611,
+        "maxY": 1205
+      },
+      "changedOutsideCorners": 0,
+      "centerPixelsChanged": 0,
+      "alphaMismatch": 0,
+      "antialiasPlaneMaxRgbError": 1,
+      "topLeftCornerRegions": {
+        "transparent": {
+          "pixels": 170,
+          "rgbMin": [
+            0,
+            0,
+            0
+          ],
+          "rgbMax": [
+            0,
+            0,
+            0
+          ]
+        },
+        "antialiased": {
+          "pixels": 53,
+          "rgbMin": [
+            234,
+            226,
+            217
+          ],
+          "rgbMax": [
+            235,
+            227,
+            218
+          ],
+          "alphaMin": 8,
+          "alphaMax": 252
+        },
+        "opaque": {
+          "pixels": 3498,
+          "rgbMin": [
+            160,
+            122,
+            72
+          ],
+          "rgbMax": [
+            242,
+            237,
+            231
+          ]
+        }
+      }
+    },
+    "decks/deck-01/cards/major-08.png": {
+      "sha256": "63a2dda95b0fe36476b242e9b065edbb893f8fd317bc12c0a371b954aac4cae7",
+      "rgbPixelsChanged": 7837,
+      "alphaPixelsChanged": 214,
+      "changedBounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 611,
+        "maxY": 1205
+      },
+      "changedOutsideCorners": 0,
+      "centerPixelsChanged": 0,
+      "alphaMismatch": 0,
+      "antialiasPlaneMaxRgbError": 1,
+      "topLeftCornerRegions": {
+        "transparent": {
+          "pixels": 170,
+          "rgbMin": [
+            0,
+            0,
+            0
+          ],
+          "rgbMax": [
+            0,
+            0,
+            0
+          ]
+        },
+        "antialiased": {
+          "pixels": 53,
+          "rgbMin": [
+            236,
+            228,
+            220
+          ],
+          "rgbMax": [
+            237,
+            229,
+            221
+          ],
+          "alphaMin": 8,
+          "alphaMax": 252
+        },
+        "opaque": {
+          "pixels": 3498,
+          "rgbMin": [
+            173,
+            152,
+            126
+          ],
+          "rgbMax": [
+            244,
+            240,
+            231
+          ]
+        }
+      }
+    },
+    "decks/deck-01/cards/major-09.png": {
+      "sha256": "0a48b9fe10071f4b61f11507c7b9bba87011a828a6c149c092c47007aaef9d94",
+      "rgbPixelsChanged": 8217,
+      "alphaPixelsChanged": 214,
+      "changedBounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 611,
+        "maxY": 1205
+      },
+      "changedOutsideCorners": 0,
+      "centerPixelsChanged": 0,
+      "alphaMismatch": 0,
+      "antialiasPlaneMaxRgbError": 1,
+      "topLeftCornerRegions": {
+        "transparent": {
+          "pixels": 170,
+          "rgbMin": [
+            0,
+            0,
+            0
+          ],
+          "rgbMax": [
+            0,
+            0,
+            0
+          ]
+        },
+        "antialiased": {
+          "pixels": 53,
+          "rgbMin": [
+            34,
+            34,
+            35
+          ],
+          "rgbMax": [
+            34,
+            34,
+            36
+          ],
+          "alphaMin": 8,
+          "alphaMax": 252
+        },
+        "opaque": {
+          "pixels": 3498,
+          "rgbMin": [
+            12,
+            14,
+            20
+          ],
+          "rgbMax": [
+            235,
+            219,
+            181
+          ]
+        }
+      }
+    },
+    "decks/deck-01/cards/major-10.png": {
+      "sha256": "8761485b7a60c777ba2f2a1690c1bc5c52db77c4cfb4f1472213485a4acef83e",
+      "rgbPixelsChanged": 7921,
+      "alphaPixelsChanged": 214,
+      "changedBounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 611,
+        "maxY": 1205
+      },
+      "changedOutsideCorners": 0,
+      "centerPixelsChanged": 0,
+      "alphaMismatch": 0,
+      "antialiasPlaneMaxRgbError": 1,
+      "topLeftCornerRegions": {
+        "transparent": {
+          "pixels": 170,
+          "rgbMin": [
+            0,
+            0,
+            0
+          ],
+          "rgbMax": [
+            0,
+            0,
+            0
+          ]
+        },
+        "antialiased": {
+          "pixels": 53,
+          "rgbMin": [
+            233,
+            226,
+            218
+          ],
+          "rgbMax": [
+            234,
+            227,
+            219
+          ],
+          "alphaMin": 8,
+          "alphaMax": 252
+        },
+        "opaque": {
+          "pixels": 3498,
+          "rgbMin": [
+            151,
+            123,
+            82
+          ],
+          "rgbMax": [
+            240,
+            234,
+            229
+          ]
+        }
+      }
+    },
+    "decks/deck-01/cards/major-11.png": {
+      "sha256": "5e3cfb629c57a10e5dedd552dbb242600f5c328aae8d25575509da76f952e881",
+      "rgbPixelsChanged": 8249,
+      "alphaPixelsChanged": 214,
+      "changedBounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 611,
+        "maxY": 1205
+      },
+      "changedOutsideCorners": 0,
+      "centerPixelsChanged": 0,
+      "alphaMismatch": 0,
+      "antialiasPlaneMaxRgbError": 1,
+      "topLeftCornerRegions": {
+        "transparent": {
+          "pixels": 170,
+          "rgbMin": [
+            0,
+            0,
+            0
+          ],
+          "rgbMax": [
+            0,
+            0,
+            0
+          ]
+        },
+        "antialiased": {
+          "pixels": 53,
+          "rgbMin": [
+            215,
+            205,
+            206
+          ],
+          "rgbMax": [
+            216,
+            206,
+            207
+          ],
+          "alphaMin": 8,
+          "alphaMax": 252
+        },
+        "opaque": {
+          "pixels": 3498,
+          "rgbMin": [
+            153,
+            135,
+            125
+          ],
+          "rgbMax": [
+            225,
+            217,
+            218
+          ]
+        }
+      }
+    },
+    "decks/deck-01/cards/major-12.png": {
+      "sha256": "65436d6b1f0d42b1c99f68577ef84e58cbcc7ec13bcd30207b86d690323f1934",
+      "rgbPixelsChanged": 7849,
+      "alphaPixelsChanged": 214,
+      "changedBounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 611,
+        "maxY": 1205
+      },
+      "changedOutsideCorners": 0,
+      "centerPixelsChanged": 0,
+      "alphaMismatch": 0,
+      "antialiasPlaneMaxRgbError": 1,
+      "topLeftCornerRegions": {
+        "transparent": {
+          "pixels": 170,
+          "rgbMin": [
+            0,
+            0,
+            0
+          ],
+          "rgbMax": [
+            0,
+            0,
+            0
+          ]
+        },
+        "antialiased": {
+          "pixels": 53,
+          "rgbMin": [
+            233,
+            225,
+            217
+          ],
+          "rgbMax": [
+            234,
+            226,
+            218
+          ],
+          "alphaMin": 8,
+          "alphaMax": 252
+        },
+        "opaque": {
+          "pixels": 3498,
+          "rgbMin": [
+            162,
+            133,
+            93
+          ],
+          "rgbMax": [
+            239,
+            232,
+            228
+          ]
+        }
+      }
+    },
+    "decks/deck-01/cards/major-13.png": {
+      "sha256": "93e83069f0bc34274da07a595ead1e635803b58001f5bd5b3ca93194b5d200a1",
+      "rgbPixelsChanged": 8145,
+      "alphaPixelsChanged": 214,
+      "changedBounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 611,
+        "maxY": 1205
+      },
+      "changedOutsideCorners": 0,
+      "centerPixelsChanged": 0,
+      "alphaMismatch": 0,
+      "antialiasPlaneMaxRgbError": 0,
+      "topLeftCornerRegions": {
+        "transparent": {
+          "pixels": 170,
+          "rgbMin": [
+            0,
+            0,
+            0
+          ],
+          "rgbMax": [
+            0,
+            0,
+            0
+          ]
+        },
+        "antialiased": {
+          "pixels": 53,
+          "rgbMin": [
+            38,
+            38,
+            37
+          ],
+          "rgbMax": [
+            39,
+            38,
+            38
+          ],
+          "alphaMin": 8,
+          "alphaMax": 252
+        },
+        "opaque": {
+          "pixels": 3498,
+          "rgbMin": [
+            17,
+            21,
+            24
+          ],
+          "rgbMax": [
+            245,
+            217,
+            172
+          ]
+        }
+      }
+    },
+    "decks/deck-01/cards/major-14.png": {
+      "sha256": "db6d6c5aa159d3494501a48e075ae482a4e62a7e596a7b56bd3ca0f31a77b248",
+      "rgbPixelsChanged": 8311,
+      "alphaPixelsChanged": 214,
+      "changedBounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 611,
+        "maxY": 1205
+      },
+      "changedOutsideCorners": 0,
+      "centerPixelsChanged": 0,
+      "alphaMismatch": 0,
+      "antialiasPlaneMaxRgbError": 1,
+      "topLeftCornerRegions": {
+        "transparent": {
+          "pixels": 170,
+          "rgbMin": [
+            0,
+            0,
+            0
+          ],
+          "rgbMax": [
+            0,
+            0,
+            0
+          ]
+        },
+        "antialiased": {
+          "pixels": 53,
+          "rgbMin": [
+            233,
+            225,
+            217
+          ],
+          "rgbMax": [
+            234,
+            227,
+            218
+          ],
+          "alphaMin": 8,
+          "alphaMax": 252
+        },
+        "opaque": {
+          "pixels": 3498,
+          "rgbMin": [
+            150,
+            117,
+            66
+          ],
+          "rgbMax": [
+            242,
+            238,
+            233
+          ]
+        }
+      }
+    },
+    "decks/deck-01/cards/major-15.png": {
+      "sha256": "e224ecf4e51cb319caa3415556501b6f6448f924538ebcb2115649a4a4be2f72",
+      "rgbPixelsChanged": 8591,
+      "alphaPixelsChanged": 214,
+      "changedBounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 611,
+        "maxY": 1205
+      },
+      "changedOutsideCorners": 0,
+      "centerPixelsChanged": 0,
+      "alphaMismatch": 0,
+      "antialiasPlaneMaxRgbError": 1,
+      "topLeftCornerRegions": {
+        "transparent": {
+          "pixels": 170,
+          "rgbMin": [
+            0,
+            0,
+            0
+          ],
+          "rgbMax": [
+            0,
+            0,
+            0
+          ]
+        },
+        "antialiased": {
+          "pixels": 53,
+          "rgbMin": [
+            43,
+            44,
+            45
+          ],
+          "rgbMax": [
+            44,
+            45,
+            46
+          ],
+          "alphaMin": 8,
+          "alphaMax": 252
+        },
+        "opaque": {
+          "pixels": 3498,
+          "rgbMin": [
+            27,
+            31,
+            36
+          ],
+          "rgbMax": [
+            191,
+            161,
+            120
+          ]
+        }
+      }
+    },
+    "decks/deck-01/cards/major-16.png": {
+      "sha256": "24b32fbccaf64848b4c1e1a61beded77137e22d6bc13b01c3e2ca7eda3ddfc0c",
+      "rgbPixelsChanged": 8167,
+      "alphaPixelsChanged": 214,
+      "changedBounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 611,
+        "maxY": 1205
+      },
+      "changedOutsideCorners": 0,
+      "centerPixelsChanged": 0,
+      "alphaMismatch": 0,
+      "antialiasPlaneMaxRgbError": 1,
+      "topLeftCornerRegions": {
+        "transparent": {
+          "pixels": 170,
+          "rgbMin": [
+            0,
+            0,
+            0
+          ],
+          "rgbMax": [
+            0,
+            0,
+            0
+          ]
+        },
+        "antialiased": {
+          "pixels": 53,
+          "rgbMin": [
+            237,
+            229,
+            222
+          ],
+          "rgbMax": [
+            239,
+            230,
+            223
+          ],
+          "alphaMin": 8,
+          "alphaMax": 252
+        },
+        "opaque": {
+          "pixels": 3498,
+          "rgbMin": [
+            36,
+            36,
+            37
+          ],
+          "rgbMax": [
+            242,
+            239,
+            234
+          ]
+        }
+      }
+    },
+    "decks/deck-01/cards/major-17.png": {
+      "sha256": "1c95a7cd9eb7e2ba47094021c34a4a119995d778341e166aacc5899943985f4d",
+      "rgbPixelsChanged": 8202,
+      "alphaPixelsChanged": 214,
+      "changedBounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 611,
+        "maxY": 1205
+      },
+      "changedOutsideCorners": 0,
+      "centerPixelsChanged": 0,
+      "alphaMismatch": 0,
+      "antialiasPlaneMaxRgbError": 1,
+      "topLeftCornerRegions": {
+        "transparent": {
+          "pixels": 170,
+          "rgbMin": [
+            0,
+            0,
+            0
+          ],
+          "rgbMax": [
+            0,
+            0,
+            0
+          ]
+        },
+        "antialiased": {
+          "pixels": 53,
+          "rgbMin": [
+            37,
+            43,
+            53
+          ],
+          "rgbMax": [
+            37,
+            44,
+            54
+          ],
+          "alphaMin": 8,
+          "alphaMax": 252
+        },
+        "opaque": {
+          "pixels": 3498,
+          "rgbMin": [
+            10,
+            17,
+            22
+          ],
+          "rgbMax": [
+            182,
+            172,
+            158
+          ]
+        }
+      }
+    },
+    "decks/deck-01/cards/major-18.png": {
+      "sha256": "15e56def2b2e9e3790876e6dd735ff034bc172ade8841297a42b0b4e73bcf019",
+      "rgbPixelsChanged": 8161,
+      "alphaPixelsChanged": 214,
+      "changedBounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 611,
+        "maxY": 1205
+      },
+      "changedOutsideCorners": 0,
+      "centerPixelsChanged": 0,
+      "alphaMismatch": 0,
+      "antialiasPlaneMaxRgbError": 1,
+      "topLeftCornerRegions": {
+        "transparent": {
+          "pixels": 170,
+          "rgbMin": [
+            0,
+            0,
+            0
+          ],
+          "rgbMax": [
+            0,
+            0,
+            0
+          ]
+        },
+        "antialiased": {
+          "pixels": 53,
+          "rgbMin": [
+            207,
+            197,
+            200
+          ],
+          "rgbMax": [
+            208,
+            199,
+            201
+          ],
+          "alphaMin": 8,
+          "alphaMax": 252
+        },
+        "opaque": {
+          "pixels": 3498,
+          "rgbMin": [
+            28,
+            26,
+            27
+          ],
+          "rgbMax": [
+            236,
+            230,
+            233
+          ]
+        }
+      }
+    },
+    "decks/deck-01/cards/major-19.png": {
+      "sha256": "9b6fbc3a81e9809bf9d213428c3aa1badb7ed66d3d11ad5ec8ffca15bddb9b9b",
+      "rgbPixelsChanged": 7903,
+      "alphaPixelsChanged": 214,
+      "changedBounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 611,
+        "maxY": 1205
+      },
+      "changedOutsideCorners": 0,
+      "centerPixelsChanged": 0,
+      "alphaMismatch": 0,
+      "antialiasPlaneMaxRgbError": 1,
+      "topLeftCornerRegions": {
+        "transparent": {
+          "pixels": 170,
+          "rgbMin": [
+            0,
+            0,
+            0
+          ],
+          "rgbMax": [
+            0,
+            0,
+            0
+          ]
+        },
+        "antialiased": {
+          "pixels": 53,
+          "rgbMin": [
+            236,
+            229,
+            221
+          ],
+          "rgbMax": [
+            237,
+            230,
+            222
+          ],
+          "alphaMin": 8,
+          "alphaMax": 252
+        },
+        "opaque": {
+          "pixels": 3498,
+          "rgbMin": [
+            160,
+            125,
+            71
+          ],
+          "rgbMax": [
+            247,
+            242,
+            238
+          ]
+        }
+      }
+    },
+    "decks/deck-01/cards/major-20.png": {
+      "sha256": "6f3bf1095f01b0aadff7f0e42e282223574708da8e90886d19a58321da2c9635",
+      "rgbPixelsChanged": 8062,
+      "alphaPixelsChanged": 214,
+      "changedBounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 611,
+        "maxY": 1205
+      },
+      "changedOutsideCorners": 0,
+      "centerPixelsChanged": 0,
+      "alphaMismatch": 0,
+      "antialiasPlaneMaxRgbError": 1,
+      "topLeftCornerRegions": {
+        "transparent": {
+          "pixels": 170,
+          "rgbMin": [
+            0,
+            0,
+            0
+          ],
+          "rgbMax": [
+            0,
+            0,
+            0
+          ]
+        },
+        "antialiased": {
+          "pixels": 53,
+          "rgbMin": [
+            239,
+            233,
+            225
+          ],
+          "rgbMax": [
+            240,
+            234,
+            226
+          ],
+          "alphaMin": 8,
+          "alphaMax": 252
+        },
+        "opaque": {
+          "pixels": 3498,
+          "rgbMin": [
+            175,
+            153,
+            122
+          ],
+          "rgbMax": [
+            248,
+            243,
+            237
+          ]
+        }
+      }
+    },
+    "decks/deck-01/cards/major-21.png": {
+      "sha256": "77361ad1df4c4ad3ff57d513e0f29400622946dc74520dc47857cd1f969aa88b",
+      "rgbPixelsChanged": 8174,
+      "alphaPixelsChanged": 214,
+      "changedBounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 611,
+        "maxY": 1205
+      },
+      "changedOutsideCorners": 0,
+      "centerPixelsChanged": 0,
+      "alphaMismatch": 0,
+      "antialiasPlaneMaxRgbError": 1,
+      "topLeftCornerRegions": {
+        "transparent": {
+          "pixels": 170,
+          "rgbMin": [
+            0,
+            0,
+            0
+          ],
+          "rgbMax": [
+            0,
+            0,
+            0
+          ]
+        },
+        "antialiased": {
+          "pixels": 53,
+          "rgbMin": [
+            237,
+            230,
+            222
+          ],
+          "rgbMax": [
+            239,
+            232,
+            224
+          ],
+          "alphaMin": 8,
+          "alphaMax": 252
+        },
+        "opaque": {
+          "pixels": 3498,
+          "rgbMin": [
+            176,
+            154,
+            126
+          ],
+          "rgbMax": [
+            249,
+            246,
+            239
+          ]
+        }
+      }
+    }
+  },
+  "minorArcana": {
+    "filesChecked": 56,
+    "unchangedFromBaseCommit": true
+  }
+}

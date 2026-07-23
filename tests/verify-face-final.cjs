@@ -65,8 +65,12 @@ async function main() {
       [0, CARD_HEIGHT - 24],
       [CARD_WIDTH - 1, CARD_HEIGHT - 24]
     ].map(([x, y]) => alphaAt(data, x, y));
-    if (Math.max(...antialiasSamples) > 40) {
-      throw new Error(`${card.cardId}: an overly opaque corner edge remains (${antialiasSamples.join(", ")})`);
+    if (card.suit === "major") {
+      if (Math.min(...antialiasSamples) <= 0 || Math.max(...antialiasSamples) >= 255) {
+        throw new Error(`${card.cardId}: one-pass antialias edge is missing (${antialiasSamples.join(", ")})`);
+      }
+    } else if (Math.max(...antialiasSamples) > 40) {
+      throw new Error(`${card.cardId}: Minor Arcana alpha baseline changed (${antialiasSamples.join(", ")})`);
     }
   }
 

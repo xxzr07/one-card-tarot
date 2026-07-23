@@ -181,7 +181,7 @@ for (const viewport of VIEWPORTS) {
   await putReading(page, {
     version: 1,
     date: dateKey(today),
-    cardId: "major-00",
+    cardId: "major-13",
     orientation: "upright",
     deckId: "deck-01",
     createdAt: new Date().toISOString()
