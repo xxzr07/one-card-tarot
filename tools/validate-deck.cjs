@@ -65,6 +65,14 @@ function validateRwsCards(cards) {
     if (!Array.isArray(card.rwsSymbols) || !card.rwsSymbols.length || card.rwsSymbols.some(symbol => !isFilledString(symbol))) {
       fail(`${card.cardId}: rwsSymbolsが不完全です`);
     }
+    for (const orientation of ORIENTATIONS) {
+      const content = card[orientation];
+      if (!content) fail(`${card.cardId}/${orientation}: RWS共通データがありません`);
+      if (!Array.isArray(content.keywords) || !content.keywords.length || content.keywords.some(keyword => !isFilledString(keyword))) {
+        fail(`${card.cardId}/${orientation}: RWS共通keywordsが不完全です`);
+      }
+      if (!isFilledString(content.meaning)) fail(`${card.cardId}/${orientation}: RWS共通meaningが空です`);
+    }
   }
   return expectedIds;
 }
@@ -118,11 +126,10 @@ function validateDeck(deckId, expectedIds, index) {
     for (const orientation of ORIENTATIONS) {
       const content = card[orientation];
       if (!content) fail(`${deckId}/${cardId}/${orientation}: データがありません`);
-      if (!Array.isArray(content.keywords) || !content.keywords.length || content.keywords.some(keyword => !isFilledString(keyword))) {
-        fail(`${deckId}/${cardId}/${orientation}: keywordsが不完全です`);
-      }
-      if (!isFilledString(content.meaning)) fail(`${deckId}/${cardId}/${orientation}: meaningが空です`);
       if (!isFilledString(content.question)) fail(`${deckId}/${cardId}/${orientation}: questionが空です`);
+      if ("keywords" in content || "meaning" in content) {
+        fail(`${deckId}/${cardId}/${orientation}: keywords / meaningはRWS共通データに置いてください`);
+      }
     }
     if (card.upright.question === card.reversed.question) {
       fail(`${deckId}/${cardId}: 正位置と逆位置のquestionが完全一致しています`);

@@ -343,19 +343,23 @@ for (const card of minorCards) {
     nameEn: card.name,
     suit: card.suit,
     rank: card.rank,
-    rwsSymbols: card.rwsSymbols
+    rwsSymbols: card.rwsSymbols,
+    upright: {
+      keywords: card.upright.keywords,
+      meaning: card.upright.meaning
+    },
+    reversed: {
+      keywords: card.reversed.keywords,
+      meaning: card.reversed.meaning
+    }
   });
   deck.cards[card.id] = {
     image: `./cards/${card.id}.png`,
     visualMotif: card.visualMotif,
     upright: {
-      keywords: card.upright.keywords,
-      meaning: card.upright.meaning,
       question: card.uprightQuestion
     },
     reversed: {
-      keywords: card.reversed.keywords,
-      meaning: card.reversed.meaning,
       question: card.reversedQuestion
     }
   };

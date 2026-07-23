@@ -207,7 +207,7 @@
   }
 
   function createSnapshot(card, deck, orientation) {
-    const content = deck.cards[card.cardId][orientation];
+    const content = resolveCardContent(card, deck, orientation);
     return {
       deckName: deck.name,
       cardNumber: card.number,
@@ -215,6 +215,19 @@
       keywords: [...content.keywords],
       meaning: content.meaning,
       question: content.question
+    };
+  }
+
+  function resolveCardContent(card, deck, orientation) {
+    const rwsContent = card?.[orientation];
+    const deckContent = deck?.cards?.[card.cardId]?.[orientation];
+    if (!rwsContent || !deckContent) {
+      throw new Error(`${card?.cardId || "unknown"} ${orientation} の表示データが不完全です`);
+    }
+    return {
+      keywords: rwsContent.keywords,
+      meaning: rwsContent.meaning,
+      question: deckContent.question
     };
   }
 
@@ -252,9 +265,10 @@
   function showReading(reading, viewingDeckId = reading.deckId, fromHistory = false) {
     const card = getCard(reading.cardId);
     const deck = getDeck(viewingDeckId) || getDeck(reading.deckId);
-    const deckCard = deck.cards[reading.cardId];
     const useSnapshot = reading.version === 2 && deck.id === reading.deckId && reading.snapshot;
-    const orientationData = useSnapshot ? reading.snapshot : deckCard[reading.orientation];
+    const orientationData = useSnapshot
+      ? reading.snapshot
+      : resolveCardContent(card, deck, reading.orientation);
     const deckName = useSnapshot ? reading.snapshot.deckName : deck.name;
     const cardNumber = useSnapshot ? reading.snapshot.cardNumber : card.number;
     const cardName = useSnapshot ? reading.snapshot.cardName : card.nameEn;

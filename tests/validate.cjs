@@ -18,10 +18,21 @@ const baseline = readJson("tests/deck-01-migration-baseline.json");
 const template = readJson("decks/_template/deck.json");
 
 const canonicalContent = rwsCards.map(card => ({
-  ...card,
+  cardId: card.cardId,
+  number: card.number,
+  nameEn: card.nameEn,
+  suit: card.suit,
+  rank: card.rank,
+  rwsSymbols: card.rwsSymbols,
   visualMotif: deck.cards[card.cardId].visualMotif,
-  upright: deck.cards[card.cardId].upright,
-  reversed: deck.cards[card.cardId].reversed
+  upright: {
+    ...card.upright,
+    question: deck.cards[card.cardId].upright.question
+  },
+  reversed: {
+    ...card.reversed,
+    question: deck.cards[card.cardId].reversed.question
+  }
 }));
 if (sha256(JSON.stringify(canonicalContent)) !== baseline.contentSha256) {
   throw new Error("Deck 01の文章またはRWS識別情報が移行時の正本から変わっています");
@@ -73,12 +84,16 @@ for (const requiredFragment of [
   '"./decks/index.json"',
   "deckContentVersion",
   "snapshot: createSnapshot",
+  "resolveCardContent",
   "version: 2"
 ]) {
   if (!appSource.includes(requiredFragment)) throw new Error(`app.jsに ${requiredFragment} がありません`);
 }
 if (/uprightQuestion|reversedQuestion/.test(appSource)) {
   throw new Error("app.jsが旧Deck 01固有question形式を参照しています");
+}
+if (/deck\.cards\[card\.cardId\]\[orientation\]/.test(appSource)) {
+  throw new Error("app.jsがkeywords / meaningをデッキ側から直接解決しています");
 }
 
 const serviceWorkerSource = fs.readFileSync(path.join(ROOT, "service-worker.js"), "utf8");

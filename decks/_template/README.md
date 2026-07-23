@@ -8,7 +8,8 @@
 4. `decks/index.json` の `decks` に1件登録します。
 5. リポジトリのルートで `node tools/validate-deck.cjs deck-02` を実行します。
 
-`deck.json` にはRWS 78 IDがすべて記入済みです。正位置・逆位置それぞれの
-`keywords`、`meaning`、`question` は必須で、Deck 01から自動補完されません。
+`deck.json` にはRWS 78 IDがすべて記入済みです。各カードの`question`は
+正位置／逆位置とも必須です。Deck 01から自動補完されません。
+`keywords`と`meaning`は`data/rws-cards.json`のRWS共通データを使うため、デッキ側には記入しません。
 
 `cards/` には説明用のこのファイル以外、雛形画像を置いていません。
