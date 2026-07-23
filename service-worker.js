@@ -1,4 +1,4 @@
-const CACHE_NAME = "one-card-content-v14";
+const CACHE_NAME = "one-card-content-v15";
 const scopeUrl = self.registration.scope;
 const deckIndexUrl = new URL("./decks/index.json", scopeUrl).href;
 const indexUrl = new URL("./index.html", scopeUrl).href;

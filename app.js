@@ -11,7 +11,8 @@
     activeReading: null,
     calendarDate: new Date(),
     history: [],
-    lastDateKey: null
+    lastDateKey: null,
+    questionFitFrame: null
   };
 
   const $ = selector => document.querySelector(selector);
@@ -231,6 +232,38 @@
     };
   }
 
+  function fitQuestionLine() {
+    if (els.reading.hidden || !els.readingQuestion.textContent) return;
+    if (state.questionFitFrame) cancelAnimationFrame(state.questionFitFrame);
+    els.readingQuestion.classList.add("is-measuring");
+    els.readingQuestion.classList.remove("is-single-line");
+    els.readingQuestion.style.removeProperty("font-size");
+    state.questionFitFrame = requestAnimationFrame(() => {
+      const maxSize = Number.parseFloat(getComputedStyle(els.readingQuestion).fontSize);
+      const rootSize = Number.parseFloat(getComputedStyle(document.documentElement).fontSize);
+      const minSize = rootSize * .88;
+      const fittedSize = maxSize * Math.min(1, els.readingQuestion.clientWidth / els.readingQuestion.scrollWidth);
+      if (fittedSize >= minSize) {
+        els.readingQuestion.style.fontSize = `${fittedSize}px`;
+        els.readingQuestion.classList.add("is-single-line");
+      } else {
+        els.readingQuestion.style.fontSize = `${minSize}px`;
+      }
+      els.readingQuestion.classList.remove("is-measuring");
+      state.questionFitFrame = null;
+    });
+  }
+
+  function renderMeaning(text) {
+    const fragment = document.createDocumentFragment();
+    for (const part of text.split(/([。、])/u)) {
+      if (!part) continue;
+      fragment.append(document.createTextNode(part));
+      if (part === "。" || part === "、") fragment.append(document.createElement("wbr"));
+    }
+    els.readingMeaning.replaceChildren(fragment);
+  }
+
   async function drawToday() {
     els.drawCard.disabled = true;
     const date = localDateKey();
@@ -283,8 +316,10 @@
     els.readingName.textContent = cardName;
     els.readingOrientation.textContent = reading.orientation === "upright" ? "正位置 · UPRIGHT" : "逆位置 · REVERSED";
     els.readingKeywords.innerHTML = orientationData.keywords.map(word => `<span class="keyword">${word}</span>`).join("");
-    els.readingMeaning.textContent = orientationData.meaning;
+    renderMeaning(orientationData.meaning);
     els.readingQuestion.textContent = orientationData.question;
+    fitQuestionLine();
+    document.fonts?.ready.then(fitQuestionLine);
     renderAlternateDecks(reading, deck.id);
     els.returnToday.hidden = !fromHistory;
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -352,11 +387,19 @@
       const date = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
       const reading = historyMap.get(date);
       const button = document.createElement("button");
+      const dayNumber = document.createElement("span");
       button.className = `calendar-day${reading ? " has-reading" : ""}${date === today ? " is-today" : ""}`;
-      button.textContent = day;
+      dayNumber.className = "calendar-day-number";
+      dayNumber.textContent = day;
+      button.append(dayNumber);
       button.disabled = !reading;
       if (reading) {
+        const drawMarker = document.createElement("span");
         const card = getCard(reading.cardId);
+        drawMarker.className = "calendar-day-marker";
+        drawMarker.textContent = "✦";
+        drawMarker.setAttribute("aria-hidden", "true");
+        button.append(drawMarker);
         button.setAttribute("aria-label", `${date} ${card?.nameEn || reading.cardId}`);
         button.addEventListener("click", () => {
           switchView("today-view", false);
@@ -447,6 +490,7 @@
     els.exportData.addEventListener("click", exportData);
     els.importData.addEventListener("change", importData);
     els.returnToday.addEventListener("click", () => showTodayState());
+    window.addEventListener("resize", fitQuestionLine);
     document.addEventListener("visibilitychange", () => {
       if (!document.hidden) {
         els.todayLabel.textContent = formatToday();

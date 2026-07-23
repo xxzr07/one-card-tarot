@@ -20,6 +20,8 @@
   --accent: #aaa5b7;
   --accent-soft: #d9d7df;
   --shadow: 0 22px 54px rgba(0, 0, 0, .44);
+  --card-corner-radius: 4.902% / 2.488%;
+  --card-edge-underlay: #14151a;
   --mincho: "Hakkou Mincho", "Yu Mincho", YuMincho, "Hiragino Mincho ProN", serif;
   --sans: "Noto Sans JP", "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, "Hakkou Mincho", sans-serif;
 }
@@ -150,6 +152,7 @@ p { margin-top: 0; }
   display: block;
   width: 100%;
   height: 100%;
+  border-radius: var(--card-corner-radius);
   transform-style: preserve-3d;
   transition: transform .82s cubic-bezier(.2, .68, .22, 1);
 }
@@ -163,13 +166,14 @@ p { margin-top: 0; }
   place-items: center;
   overflow: hidden;
   border: 0;
-  border-radius: 10px;
+  border-radius: var(--card-corner-radius);
+  background-color: var(--card-edge-underlay);
   box-shadow: var(--shadow);
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
 .card-back {
-  background-color: #14151a;
   background-image: var(--card-back-image);
   background-position: center;
   background-repeat: no-repeat;
@@ -177,7 +181,6 @@ p { margin-top: 0; }
 }
 
 .card-front {
-  background: #e9e2d9;
   transform: rotateY(180deg);
 }
 
@@ -201,7 +204,7 @@ p { margin-top: 0; }
   grid-template-columns: 38px minmax(0, 1fr) 38px;
   align-items: center;
   gap: 5px;
-  margin-top: 8px;
+  margin-top: 0;
 }
 
 .deck-preview {
@@ -250,23 +253,15 @@ p { margin-top: 0; }
   border-radius: 999px;
   color: #17181d;
   background: var(--accent-soft);
-  font-size: .9rem;
-  font-weight: 600;
+  font-family: var(--mincho);
+  font-size: 1rem;
+  font-weight: 400;
   letter-spacing: .08em;
   -webkit-tap-highlight-color: transparent;
 }
 
 .draw-button:active { background: #c8c6ce; transform: translateY(1px); }
 .draw-button:disabled { opacity: .55; }
-
-.quiet-note {
-  max-width: 330px;
-  margin: 12px 0 0;
-  color: var(--text-muted);
-  text-align: center;
-  font-size: .65rem;
-  line-height: 1.65;
-}
 
 .reading { padding: 25px 0 22px; }
 
@@ -282,8 +277,8 @@ p { margin-top: 0; }
   aspect-ratio: 306 / 603;
   overflow: hidden;
   border: 0;
-  border-radius: 13px;
-  background-color: #e9e2d9;
+  border-radius: var(--card-corner-radius);
+  background-color: var(--card-edge-underlay);
   background-image: var(--card-image);
   background-repeat: no-repeat;
   background-size: cover;
@@ -348,17 +343,24 @@ p { margin-top: 0; }
 }
 
 .meaning {
+  max-width: 34em;
   margin: 0;
   color: var(--text-secondary);
   font-size: .86rem;
+  hanging-punctuation: allow-end;
   line-height: 1.9;
+  line-break: strict;
+  overflow-wrap: anywhere;
   text-align: left;
+  text-wrap: pretty;
+  word-break: keep-all;
 }
 
 .question-block {
   position: relative;
-  margin: 31px 0 0;
-  padding: 28px 4px 4px;
+  max-width: 560px;
+  margin: 31px -10px 0;
+  padding: 28px 0 4px;
   border-top: 1px solid var(--line-strong);
 }
 
@@ -377,9 +379,17 @@ p { margin-top: 0; }
 .question {
   margin: 13px auto 0;
   font-family: var(--mincho);
-  font-size: 1.12rem;
-  line-height: 1.9;
-  letter-spacing: .04em;
+  font-size: 1.06rem;
+  line-height: 1.75;
+  letter-spacing: .01em;
+  line-break: strict;
+  text-wrap: balance;
+  word-break: normal;
+}
+
+.question.is-measuring,
+.question.is-single-line {
+  white-space: nowrap;
 }
 
 .alternate-deck-controls { margin-top: 25px; }
@@ -475,8 +485,10 @@ p { margin-top: 0; }
   display: grid;
   min-width: 0;
   aspect-ratio: 1;
-  place-items: center;
-  padding: 0 0 7px;
+  grid-template-rows: 28px 10px;
+  align-content: center;
+  justify-items: center;
+  padding: 2px 0 1px;
   border: 0;
   border-top: 1px solid rgba(230, 230, 230, .07);
   color: var(--text-secondary);
@@ -488,20 +500,27 @@ p { margin-top: 0; }
 .calendar-day.is-empty { pointer-events: none; }
 .calendar-day.has-reading { color: var(--text); }
 
-.calendar-day.has-reading::before {
-  position: absolute;
-  bottom: 6px;
-  color: var(--text-secondary);
-  content: "✦";
-  font-size: .43rem;
+.calendar-day-number {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  grid-row: 1;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  line-height: 1;
 }
 
-.calendar-day.is-today::after {
-  position: absolute;
-  inset: 6px;
-  border: 1px solid var(--line-strong);
-  border-radius: 50%;
-  content: "";
+.calendar-day.is-today .calendar-day-number {
+  border-color: var(--line-strong);
+}
+
+.calendar-day-marker {
+  grid-row: 2;
+  align-self: start;
+  color: var(--text-secondary);
+  font-size: .43rem;
+  line-height: 1;
 }
 
 .empty-state {
@@ -544,6 +563,13 @@ p { margin-top: 0; }
 .settings-card .version {
   margin-top: 17px;
   color: var(--text-muted);
+}
+
+.settings-card .about-description {
+  font-size: clamp(.7rem, 3vw, .75rem);
+  letter-spacing: -.015em;
+  line-height: 1.5;
+  white-space: nowrap;
 }
 
 .settings-actions {
@@ -630,7 +656,8 @@ p { margin-top: 0; }
   .card-scene { width: clamp(142px, 39vw, 158px); }
   .deck-picker { margin-top: 15px; }
   .draw-button { min-height: 49px; margin-top: 10px; }
-  .quiet-note { margin-top: 8px; }
+  .about-card { padding-inline: 8px; }
+  .settings-card .about-description { font-size: .68rem; }
 }
 
 @media (min-width: 700px) {
