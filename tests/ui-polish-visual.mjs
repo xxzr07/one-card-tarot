@@ -5,12 +5,14 @@ const { chromium } = require("playwright");
 const sharp = require("sharp");
 
 const BASE_URL = process.env.ONE_CARD_BASE_URL || "http://127.0.0.1:4173";
+const requestedWidth = Number.parseInt(process.env.ONE_CARD_VIEWPORT_WIDTH || "", 10);
 const VIEWPORTS = [
   { width: 320, height: 568 },
   { width: 375, height: 667 },
   { width: 390, height: 844 },
   { width: 430, height: 932 }
-];
+].filter(viewport => !requestedWidth || viewport.width === requestedWidth);
+const deviceScaleFactor = Number.parseFloat(process.env.ONE_CARD_DPR || "1");
 
 const browser = await chromium.launch({
   headless: true,
@@ -44,8 +46,8 @@ async function putReading(page, reading) {
   }), reading);
 }
 
-async function assertDarkCorners(locator, label) {
-  const image = sharp(await locator.screenshot());
+async function assertDarkCornerImage(buffer, label) {
+  const image = sharp(buffer);
   const { data, info } = await image.removeAlpha().raw().toBuffer({ resolveWithObject: true });
   const samples = [
     [0, 0],
@@ -62,10 +64,26 @@ async function assertDarkCorners(locator, label) {
   return samples.map(value => Math.round(value));
 }
 
+async function assertDarkCorners(locator, label) {
+  return assertDarkCornerImage(await locator.screenshot(), label);
+}
+
+async function assertMovingDarkCorners(page, locator, label) {
+  const box = await locator.boundingBox();
+  if (!box || box.width < 1 || box.height < 1) throw new Error(`${label}: moving card is not visible`);
+  const clip = {
+    x: Math.max(0, box.x),
+    y: Math.max(0, box.y),
+    width: Math.min(box.width, page.viewportSize().width - Math.max(0, box.x)),
+    height: Math.min(box.height, page.viewportSize().height - Math.max(0, box.y))
+  };
+  return assertDarkCornerImage(await page.screenshot({ clip }), label);
+}
+
 for (const viewport of VIEWPORTS) {
   const context = await browser.newContext({
     viewport,
-    deviceScaleFactor: 1,
+    deviceScaleFactor,
     timezoneId: "Asia/Tokyo",
     colorScheme: "dark"
   });
@@ -145,6 +163,11 @@ for (const viewport of VIEWPORTS) {
     ) {
       throw new Error("390: flip transition does not preserve shared dark clipping");
     }
+    flipState.frontCorners = await assertMovingDarkCorners(
+      page,
+      page.locator("#draw-stage .card-front .tarot-card"),
+      "390 flip front"
+    );
     await page.locator("#reading:not([hidden])").waitFor();
   }
 
@@ -153,6 +176,8 @@ for (const viewport of VIEWPORTS) {
   prior.setDate(prior.getDate() - 2);
   const older = new Date(today);
   older.setDate(older.getDate() - 4);
+  const olderMinor = new Date(today);
+  olderMinor.setDate(olderMinor.getDate() - 6);
   await putReading(page, {
     version: 1,
     date: dateKey(today),
@@ -174,6 +199,14 @@ for (const viewport of VIEWPORTS) {
     date: dateKey(older),
     cardId: "major-21",
     orientation: "reversed",
+    deckId: "deck-01",
+    createdAt: new Date().toISOString()
+  });
+  await putReading(page, {
+    version: 1,
+    date: dateKey(olderMinor),
+    cardId: "wands-ace",
+    orientation: "upright",
     deckId: "deck-01",
     createdAt: new Date().toISOString()
   });
@@ -242,6 +275,10 @@ for (const viewport of VIEWPORTS) {
   const minorCorners = await assertDarkCorners(page.locator("#reading-card .tarot-card"), `${viewport.width} minor reversed`);
   await page.locator('[data-view="history-view"]').click();
   await page.locator(`.calendar-day[aria-label^="${dateKey(older)}"]`).click();
+  const reversedMajorCorners = await assertDarkCorners(
+    page.locator("#reading-card .tarot-card"),
+    `${viewport.width} major reversed`
+  );
   const meaningLines = await page.locator("#reading-meaning").evaluate(element => {
     const lines = new Map();
     const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
@@ -264,6 +301,12 @@ for (const viewport of VIEWPORTS) {
   ) {
     throw new Error(`${viewport.width}: meaning text wraps unnaturally (${meaningLines.join(" / ")})`);
   }
+  await page.locator('[data-view="history-view"]').click();
+  await page.locator(`.calendar-day[aria-label^="${dateKey(olderMinor)}"]`).click();
+  const uprightMinorCorners = await assertDarkCorners(
+    page.locator("#reading-card .tarot-card"),
+    `${viewport.width} minor upright`
+  );
 
   const finalLayout = await page.evaluate(() => ({
     horizontalOverflow: document.documentElement.scrollWidth > innerWidth + 1,
@@ -284,7 +327,9 @@ for (const viewport of VIEWPORTS) {
     viewport,
     backCorners,
     majorCorners,
+    reversedMajorCorners,
     minorCorners,
+    uprightMinorCorners,
     questionAudit,
     meaningLines,
     about,

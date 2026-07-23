@@ -47,7 +47,7 @@ assert(app.includes('dayNumber.className = "calendar-day-number"'), "Calendar da
 assert(/\.calendar-day\.is-today \.calendar-day-number\s*\{[^}]*border-color:/s.test(css), "Today ring is not attached to the date number");
 assert(app.includes('drawMarker.className = "calendar-day-marker"'), "Calendar draw marker is missing");
 assert(/\.calendar-day-marker\s*\{[^}]*grid-row:\s*2/s.test(css), "Draw marker is not placed below the date number");
-assert(serviceWorker.includes('one-card-content-v15'), "Service worker cache was not advanced for the UI update");
+assert(serviceWorker.includes('one-card-content-v16'), "Service worker cache was not advanced for the corner image update");
 
 console.log(JSON.stringify({
   sharedRadius,

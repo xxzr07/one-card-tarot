@@ -55,6 +55,19 @@ async function main() {
     if (corners.some(([x, y]) => alphaAt(data, x, y) !== 0)) {
       throw new Error(`${card.cardId}: a non-transparent outer corner remains`);
     }
+    const antialiasSamples = [
+      [23, 0],
+      [CARD_WIDTH - 24, 0],
+      [23, CARD_HEIGHT - 1],
+      [CARD_WIDTH - 24, CARD_HEIGHT - 1],
+      [0, 23],
+      [CARD_WIDTH - 1, 23],
+      [0, CARD_HEIGHT - 24],
+      [CARD_WIDTH - 1, CARD_HEIGHT - 24]
+    ].map(([x, y]) => alphaAt(data, x, y));
+    if (Math.max(...antialiasSamples) > 40) {
+      throw new Error(`${card.cardId}: an overly opaque corner edge remains (${antialiasSamples.join(", ")})`);
+    }
   }
 
   const majorLuminance = median(normalMajorIds.map(id => baseLuminance(cardPixels.get(id))));

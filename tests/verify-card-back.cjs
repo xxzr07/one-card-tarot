@@ -21,6 +21,19 @@ async function main() {
   if (outerCorners.some(([x, y]) => alphaAt(x, y) !== 0)) {
     throw new Error("Back image has non-transparent pixels outside the shared rounded corners");
   }
+  const antialiasSamples = [
+    [23, 0],
+    [CARD_WIDTH - 24, 0],
+    [23, CARD_HEIGHT - 1],
+    [CARD_WIDTH - 24, CARD_HEIGHT - 1],
+    [0, 23],
+    [CARD_WIDTH - 1, 23],
+    [0, CARD_HEIGHT - 24],
+    [CARD_WIDTH - 1, CARD_HEIGHT - 24]
+  ].map(([x, y]) => alphaAt(x, y));
+  if (Math.max(...antialiasSamples) > 40) {
+    throw new Error(`Back image has an overly opaque corner edge (${antialiasSamples.join(", ")})`);
+  }
   if (Object.keys(deck.cards).length !== 78) throw new Error("Deck 01 must use one back for all 78 cards");
 
   const appSource = fs.readFileSync(path.join(ROOT, "app.js"), "utf8");
@@ -37,6 +50,7 @@ async function main() {
     dimensions: `${CARD_WIDTH}x${CARD_HEIGHT}`,
     sharedCornerRadius: CARD_RADIUS,
     transparentOuterCorners: true,
+    softenedAntialiasEdge: true,
     cardsUsingThisBack: Object.keys(deck.cards).length,
     preDrawOrientation: "always-upright",
     faceOrientationAfterDraw: "reading-orientation"
