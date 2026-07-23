@@ -6,10 +6,11 @@ const { minorCards } = require("./minor-specs.cjs");
 const { clipCardPng } = require("./card-output.cjs");
 
 const ROOT = path.resolve(__dirname, "..");
-const OUT = path.join(ROOT, "assets", "deck-01");
+const DECK_DIR = path.join(ROOT, "decks", "deck-01");
+const OUT = path.join(DECK_DIR, "cards");
 const TMP = path.join(ROOT, "tools", ".minor-tmp");
 const BUILD = path.join(ROOT, "tools", ".minor-build");
-const TEXTURE = path.join(OUT, "minor-paper-texture.png");
+const TEXTURE = path.join(DECK_DIR, "minor-paper-texture.png");
 fs.mkdirSync(OUT, { recursive: true });
 fs.mkdirSync(TMP, { recursive: true });
 fs.mkdirSync(BUILD, { recursive: true });
@@ -240,7 +241,7 @@ function renderCard(card) {
 
 async function main() {
 // Always render the complete 56-card set into a clean staging directory first.
-// Nothing in assets/deck-01 is replaced until every new PNG has succeeded, so
+// Nothing in decks/deck-01/cards is replaced until every new PNG has succeeded, so
 // a failed build cannot leave a mixture of old and new Minor Arcana cards.
 for (const entry of fs.readdirSync(BUILD)) {
   fs.rmSync(path.join(BUILD, entry), { recursive: true, force: true });
@@ -307,7 +308,7 @@ for (const card of minorCards) {
 
 const sha256 = buffer => crypto.createHash("sha256").update(buffer).digest("hex");
 const files = minorCards.map(card => {
-  const relativePath = `assets/deck-01/${card.id}.png`;
+  const relativePath = `decks/deck-01/cards/${card.id}.png`;
   const absolutePath = path.join(ROOT, relativePath);
   const stat = fs.statSync(absolutePath);
   return {
@@ -319,10 +320,10 @@ const files = minorCards.map(card => {
   };
 });
 const minorSetSha256 = sha256(Buffer.from(files.map(file => `${file.id}:${file.sha256}`).join("\n")));
-fs.writeFileSync(path.join(OUT, "minor-build-manifest.json"), JSON.stringify({
+fs.writeFileSync(path.join(DECK_DIR, "minor-build-manifest.json"), JSON.stringify({
   schemaVersion: 1,
   generatedAt: new Date().toISOString(),
-  canonicalSourceDirectory: "assets/deck-01",
+  canonicalSourceDirectory: "decks/deck-01/cards",
   generator: "tools/generate-minor.cjs",
   generatorSha256: sha256(fs.readFileSync(__filename)),
   minorSetSha256,
@@ -330,17 +331,37 @@ fs.writeFileSync(path.join(OUT, "minor-build-manifest.json"), JSON.stringify({
   files
 }, null, 2) + "\n");
 
-const cardData = minorCards.map(card => ({
-  id: card.id, number: card.number, name: card.name, suit: card.suit,
-  upright: card.upright, reversed: card.reversed, rwsSymbols: card.rwsSymbols
-}));
-const deckData = Object.fromEntries(minorCards.map(card => [card.id, {
-  image: `./assets/deck-01/${card.id}.png`, visualMotif: card.visualMotif,
-  uprightQuestion: card.uprightQuestion, reversedQuestion: card.reversedQuestion
-}]));
-
-fs.writeFileSync(path.join(ROOT, "data", "minor-cards.js"), `window.CARD_DATA.push(...${JSON.stringify(cardData, null, 2)});\n`);
-fs.writeFileSync(path.join(ROOT, "decks", "deck-01-minor.js"), `Object.assign(window.DECKS.find(deck => deck.id === "deck-01").cards, ${JSON.stringify(deckData, null, 2)});\n`);
+const rwsPath = path.join(ROOT, "data", "rws-cards.json");
+const deckPath = path.join(DECK_DIR, "deck.json");
+const rwsCards = JSON.parse(fs.readFileSync(rwsPath, "utf8"));
+const deck = JSON.parse(fs.readFileSync(deckPath, "utf8"));
+const rwsById = new Map(rwsCards.map(card => [card.cardId, card]));
+for (const card of minorCards) {
+  rwsById.set(card.id, {
+    cardId: card.id,
+    number: card.number,
+    nameEn: card.name,
+    suit: card.suit,
+    rank: card.rank,
+    rwsSymbols: card.rwsSymbols
+  });
+  deck.cards[card.id] = {
+    image: `./cards/${card.id}.png`,
+    visualMotif: card.visualMotif,
+    upright: {
+      keywords: card.upright.keywords,
+      meaning: card.upright.meaning,
+      question: card.uprightQuestion
+    },
+    reversed: {
+      keywords: card.reversed.keywords,
+      meaning: card.reversed.meaning,
+      question: card.reversedQuestion
+    }
+  };
+}
+fs.writeFileSync(rwsPath, `${JSON.stringify([...rwsById.values()], null, 2)}\n`);
+fs.writeFileSync(deckPath, `${JSON.stringify(deck, null, 2)}\n`);
 console.log(`Generated ${minorCards.length} Minor Arcana cards from a clean staging directory.`);
 console.log(`Minor set SHA-256: ${minorSetSha256}`);
 }

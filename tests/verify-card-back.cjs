@@ -1,21 +1,16 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const crypto = require("node:crypto");
-const vm = require("node:vm");
 const sharp = require("sharp");
 const { CARD_WIDTH, CARD_HEIGHT, CARD_RADIUS } = require("../tools/card-output.cjs");
 
 const ROOT = path.resolve(__dirname, "..");
 const sha256 = buffer => crypto.createHash("sha256").update(buffer).digest("hex");
-const sandbox = { window: {} };
-vm.createContext(sandbox);
-vm.runInContext(fs.readFileSync(path.join(ROOT, "decks/deck-01.js"), "utf8"), sandbox, { filename: "decks/deck-01.js" });
-vm.runInContext(fs.readFileSync(path.join(ROOT, "decks/deck-01-minor.js"), "utf8"), sandbox, { filename: "decks/deck-01-minor.js" });
 
 async function main() {
-  const deck = sandbox.window.DECKS[0];
-  const relativePath = deck.backImage.replace(/^\.\//, "");
-  const absolutePath = path.join(ROOT, relativePath);
+  const deck = JSON.parse(fs.readFileSync(path.join(ROOT, "decks", "deck-01", "deck.json"), "utf8"));
+  const relativePath = path.join("decks", "deck-01", deck.backImage).replaceAll(path.sep, "/");
+  const absolutePath = path.resolve(ROOT, "decks", "deck-01", deck.backImage);
   const { data, info } = await sharp(absolutePath).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
   if (info.width !== CARD_WIDTH || info.height !== CARD_HEIGHT || info.channels !== 4) {
     throw new Error(`Back image must be ${CARD_WIDTH}x${CARD_HEIGHT} RGBA`);

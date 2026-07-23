@@ -43,8 +43,43 @@
     historyEmpty: $("#history-empty"),
     exportData: $("#export-data"),
     importData: $("#import-data"),
-    settingsStatus: $("#settings-status")
+    settingsStatus: $("#settings-status"),
+    deckSummary: $("#deck-summary")
   };
+
+  async function fetchJson(url) {
+    const response = await fetch(url, { cache: "no-cache" });
+    if (!response.ok) throw new Error(`${url} を読み込めませんでした`);
+    return response.json();
+  }
+
+  async function loadContent() {
+    const deckIndexUrl = new URL("./decks/index.json", window.location.href);
+    const [cards, deckIndex] = await Promise.all([
+      fetchJson(new URL("./data/rws-cards.json", window.location.href)),
+      fetchJson(deckIndexUrl)
+    ]);
+    const registrations = deckIndex.decks.filter(entry => entry.enabled !== false);
+    const decks = await Promise.all(registrations.map(async entry => {
+      const manifestUrl = new URL(entry.manifest, deckIndexUrl);
+      const deck = await fetchJson(manifestUrl);
+      if (deck.id !== entry.id) throw new Error(`${entry.id} のDeck IDが一致しません`);
+      return {
+        ...deck,
+        backImage: new URL(deck.backImage, manifestUrl).href,
+        cards: Object.fromEntries(Object.entries(deck.cards).map(([cardId, card]) => [
+          cardId,
+          { ...card, image: new URL(card.image, manifestUrl).href }
+        ]))
+      };
+    }));
+    if (!cards.length || !decks.length) throw new Error("利用できるカードまたはデッキがありません");
+
+    window.CARD_DATA = cards;
+    window.DECKS = decks;
+    const defaultIndex = decks.findIndex(deck => deck.id === deckIndex.defaultDeckId);
+    state.selectedDeckIndex = defaultIndex >= 0 ? defaultIndex : 0;
+  }
 
   function localDateKey(date = new Date()) {
     const year = date.getFullYear();
@@ -111,18 +146,23 @@
   }
 
   function getCard(cardId) {
-    return window.CARD_DATA.find(card => card.id === cardId);
+    return window.CARD_DATA.find(card => card.cardId === cardId);
   }
 
   function renderDeckPicker() {
     const deck = currentDeck();
-    els.deckPreview.innerHTML = `<h3>${deck.name}</h3><p>${deck.subtitle}</p>`;
+    const name = document.createElement("h3");
+    const subtitle = document.createElement("p");
+    name.textContent = deck.name;
+    subtitle.textContent = deck.subtitle;
+    els.deckPreview.replaceChildren(name, subtitle);
     els.drawBack.style.setProperty("--card-back-image", `url('${deck.backImage}')`);
     els.drawBack.setAttribute("aria-label", `${deck.name}のカード裏面`);
     els.drawStage.setAttribute("aria-label", `${deck.name}のカード裏面`);
     const hasMultiple = window.DECKS.length > 1;
     els.deckPrev.disabled = !hasMultiple;
     els.deckNext.disabled = !hasMultiple;
+    els.deckSummary.textContent = `${deck.name} · COMPLETE DECK · ${Object.keys(deck.cards).length} CARDS`;
   }
 
   function shiftDeck(direction) {
@@ -162,8 +202,20 @@
     element.className = `tarot-card${orientation === "reversed" ? " is-reversed" : ""}`;
     element.style.setProperty("--card-image", `url('${image}')`);
     element.setAttribute("role", "img");
-    element.setAttribute("aria-label", `${getCard(cardId).name} ${orientation === "upright" ? "正位置" : "逆位置"}`);
+    element.setAttribute("aria-label", `${getCard(cardId).nameEn} ${orientation === "upright" ? "正位置" : "逆位置"}`);
     return element;
+  }
+
+  function createSnapshot(card, deck, orientation) {
+    const content = deck.cards[card.cardId][orientation];
+    return {
+      deckName: deck.name,
+      cardNumber: card.number,
+      cardName: card.nameEn,
+      keywords: [...content.keywords],
+      meaning: content.meaning,
+      question: content.question
+    };
   }
 
   async function drawToday() {
@@ -176,14 +228,17 @@
     }
 
     const deck = currentDeck();
-    const availableCards = window.CARD_DATA.filter(card => deck.cards[card.id]);
+    const availableCards = window.CARD_DATA.filter(card => deck.cards[card.cardId]);
     const card = randomItem(availableCards);
+    const orientation = randomOrientation();
     const reading = {
-      version: 1,
+      version: 2,
       date,
-      cardId: card.id,
-      orientation: randomOrientation(),
+      cardId: card.cardId,
+      orientation,
       deckId: deck.id,
+      deckContentVersion: deck.contentVersion,
+      snapshot: createSnapshot(card, deck, orientation),
       createdAt: new Date().toISOString()
     };
 
@@ -198,20 +253,24 @@
     const card = getCard(reading.cardId);
     const deck = getDeck(viewingDeckId) || getDeck(reading.deckId);
     const deckCard = deck.cards[reading.cardId];
-    const orientationData = card[reading.orientation];
+    const useSnapshot = reading.version === 2 && deck.id === reading.deckId && reading.snapshot;
+    const orientationData = useSnapshot ? reading.snapshot : deckCard[reading.orientation];
+    const deckName = useSnapshot ? reading.snapshot.deckName : deck.name;
+    const cardNumber = useSnapshot ? reading.snapshot.cardNumber : card.number;
+    const cardName = useSnapshot ? reading.snapshot.cardName : card.nameEn;
 
     state.activeReading = reading;
     state.viewingDeckId = deck.id;
     els.preDraw.hidden = true;
     els.reading.hidden = false;
     els.readingCard.replaceChildren(cardElement(reading.cardId, deck.id, reading.orientation));
-    els.readingDeck.textContent = `${reading.date} · ${deck.name}${deck.id !== reading.deckId ? " · ALTERNATE VIEW" : ""}`;
-    els.readingNumber.textContent = card.number;
-    els.readingName.textContent = card.name;
+    els.readingDeck.textContent = `${reading.date} · ${deckName}${deck.id !== reading.deckId ? " · ALTERNATE VIEW" : ""}`;
+    els.readingNumber.textContent = cardNumber;
+    els.readingName.textContent = cardName;
     els.readingOrientation.textContent = reading.orientation === "upright" ? "正位置 · UPRIGHT" : "逆位置 · REVERSED";
     els.readingKeywords.innerHTML = orientationData.keywords.map(word => `<span class="keyword">${word}</span>`).join("");
     els.readingMeaning.textContent = orientationData.meaning;
-    els.readingQuestion.textContent = reading.orientation === "upright" ? deckCard.uprightQuestion : deckCard.reversedQuestion;
+    els.readingQuestion.textContent = orientationData.question;
     renderAlternateDecks(reading, deck.id);
     els.returnToday.hidden = !fromHistory;
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -284,7 +343,7 @@
       button.disabled = !reading;
       if (reading) {
         const card = getCard(reading.cardId);
-        button.setAttribute("aria-label", `${date} ${card?.name || reading.cardId}`);
+        button.setAttribute("aria-label", `${date} ${card?.nameEn || reading.cardId}`);
         button.addEventListener("click", () => {
           switchView("today-view", false);
           showReading(reading, reading.deckId, true);
@@ -304,7 +363,7 @@
     const readings = await dbGetAll();
     const payload = {
       app: "one-card-tarot",
-      schemaVersion: 1,
+      schemaVersion: 2,
       exportedAt: new Date().toISOString(),
       dateBoundary: "device-local-midnight",
       timezoneAtExport: Intl.DateTimeFormat().resolvedOptions().timeZone || "device-local",
@@ -328,11 +387,7 @@
       if (payload.app !== "one-card-tarot" || !Array.isArray(payload.readings)) {
         throw new Error("形式が一致しません");
       }
-      for (const reading of payload.readings) {
-        if (!/^\d{4}-\d{2}-\d{2}$/.test(reading.date) || !getCard(reading.cardId) || !getDeck(reading.deckId) || !["upright", "reversed"].includes(reading.orientation)) {
-          throw new Error("読み込めない記録が含まれています");
-        }
-      }
+      for (const reading of payload.readings) validateReading(reading);
       for (const reading of payload.readings) await dbPut(reading);
       state.history = await dbGetAll();
       els.settingsStatus.textContent = `${payload.readings.length}件の記録を読み込みました。`;
@@ -342,6 +397,30 @@
     } finally {
       event.target.value = "";
     }
+  }
+
+  function validateReading(reading) {
+    const validBase = reading &&
+      /^\d{4}-\d{2}-\d{2}$/.test(reading.date) &&
+      getCard(reading.cardId) &&
+      getDeck(reading.deckId) &&
+      ["upright", "reversed"].includes(reading.orientation);
+    if (!validBase || ![1, 2].includes(reading.version)) {
+      throw new Error("読み込めない記録が含まれています");
+    }
+    if (reading.version === 1) return;
+
+    const snapshot = reading.snapshot;
+    const validSnapshot = typeof reading.deckContentVersion === "string" &&
+      reading.deckContentVersion.length > 0 &&
+      snapshot &&
+      ["deckName", "cardName", "meaning", "question"].every(key =>
+        typeof snapshot[key] === "string" && snapshot[key].length > 0
+      ) &&
+      Array.isArray(snapshot.keywords) &&
+      snapshot.keywords.length > 0 &&
+      snapshot.keywords.every(word => typeof word === "string" && word.length > 0);
+    if (!validSnapshot) throw new Error("snapshotが不完全な記録が含まれています");
   }
 
   function bindEvents() {
@@ -363,6 +442,7 @@
   }
 
   async function init() {
+    await loadContent();
     state.lastDateKey = localDateKey();
     els.todayLabel.textContent = formatToday();
     renderDeckPicker();
@@ -379,7 +459,11 @@
       }
     }, 30000);
     if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js"));
+      window.addEventListener("load", async () => {
+        const registration = await navigator.serviceWorker.register("./service-worker.js");
+        const worker = registration.active || registration.waiting || registration.installing;
+        worker?.postMessage({ type: "CACHE_DECKS" });
+      });
     }
   }
 

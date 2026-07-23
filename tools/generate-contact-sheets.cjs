@@ -5,9 +5,9 @@ const { execFileSync } = require("node:child_process");
 const { minorCards } = require("./minor-specs.cjs");
 
 const ROOT = path.resolve(__dirname, "..");
-const ASSETS = path.join(ROOT, "assets", "deck-01");
+const ASSETS = path.join(ROOT, "decks", "deck-01", "cards");
 const TESTS = path.join(ROOT, "tests");
-const MANIFEST = path.join(ASSETS, "minor-build-manifest.json");
+const MANIFEST = path.join(ROOT, "decks", "deck-01", "minor-build-manifest.json");
 const sha256 = buffer => crypto.createHash("sha256").update(buffer).digest("hex");
 
 const major = Array.from({ length: 22 }, (_, index) =>
@@ -67,7 +67,7 @@ const describe = file => {
 fs.writeFileSync(path.join(TESTS, `minor-source-audit-${version}.json`), JSON.stringify({
   schemaVersion: 1,
   generatedAt: new Date().toISOString(),
-  canonicalCardDirectory: "assets/deck-01",
+  canonicalCardDirectory: "decks/deck-01/cards",
   contactSheetGenerator: "tools/generate-contact-sheets.cjs",
   minorSetSha256: manifest.minorSetSha256,
   sourceFiles: manifest.files,

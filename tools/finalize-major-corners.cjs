@@ -4,7 +4,7 @@ const sharp = require("sharp");
 const { clipCardPng } = require("./card-output.cjs");
 
 const ROOT = path.resolve(__dirname, "..");
-const ASSETS = path.join(ROOT, "assets", "deck-01");
+const ASSETS = path.join(ROOT, "decks", "deck-01", "cards");
 
 async function main() {
   let updated = 0;

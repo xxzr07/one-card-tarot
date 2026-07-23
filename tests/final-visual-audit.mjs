@@ -30,19 +30,19 @@ const assetAudit = await page.evaluate(async () => {
   const deck = window.DECKS[0];
   const results = [];
   for (const card of window.CARD_DATA) {
-    const imagePath = deck.cards[card.id]?.image;
+    const imagePath = deck.cards[card.cardId]?.image;
     const image = new Image();
     image.src = imagePath;
     try {
       await image.decode();
       results.push({
-        id: card.id,
+        id: card.cardId,
         ok: image.naturalWidth === 612 && image.naturalHeight === 1206,
         width: image.naturalWidth,
         height: image.naturalHeight
       });
     } catch {
-      results.push({ id: card.id, ok: false, width: 0, height: 0 });
+      results.push({ id: card.cardId, ok: false, width: 0, height: 0 });
     }
   }
   return results;
@@ -61,7 +61,7 @@ const cssAudit = await page.evaluate(() => {
     for (const orientation of ["upright", "reversed"]) {
       const element = document.createElement("div");
       element.className = `tarot-card${orientation === "reversed" ? " is-reversed" : ""}`;
-      element.style.setProperty("--card-image", `url('${deck.cards[card.id].image}')`);
+      element.style.setProperty("--card-image", `url('${deck.cards[card.cardId].image}')`);
       host.replaceChildren(element);
       const box = element.getBoundingClientRect();
       const style = getComputedStyle(element);
@@ -70,10 +70,10 @@ const cssAudit = await page.evaluate(() => {
       if (
         Math.abs(box.height - expectedHeight) > 1 ||
         style.backgroundSize !== "cover" ||
-        !style.backgroundImage.includes(card.id) ||
+        !style.backgroundImage.includes(card.cardId) ||
         (reversed && style.transform === "none") ||
         (!reversed && style.transform !== "none")
-      ) failures.push({ id: card.id, orientation, width: box.width, height: box.height, transform: style.transform });
+      ) failures.push({ id: card.cardId, orientation, width: box.width, height: box.height, transform: style.transform });
     }
   }
   host.remove();
@@ -118,7 +118,7 @@ for (const [cardId, orientation, screenshot] of SCREENSHOTS) {
   const rendered = await page.locator("#reading-card .tarot-card");
   const box = await rendered.boundingBox();
   const navBox = await page.locator(".bottom-nav").boundingBox();
-  const expectedName = await page.evaluate(id => window.CARD_DATA.find(card => card.id === id).name, cardId);
+  const expectedName = await page.evaluate(id => window.CARD_DATA.find(card => card.cardId === id).nameEn, cardId);
   const actualName = await page.locator("#reading-name").textContent();
   const transform = await rendered.evaluate(element => getComputedStyle(element).transform);
   if (!box || Math.abs(box.height - box.width * 603 / 306) > 1) throw new Error(`${cardId}: card ratio is incorrect`);

@@ -1,151 +1,92 @@
 const fs = require("node:fs");
 const path = require("node:path");
-const vm = require("node:vm");
 const crypto = require("node:crypto");
 const { execFileSync } = require("node:child_process");
 
-const sandbox = { window: {} };
-vm.createContext(sandbox);
-for (const file of ["data/cards.js", "data/minor-cards.js", "decks/deck-01.js", "decks/deck-01-minor.js"]) {
-  vm.runInContext(fs.readFileSync(file, "utf8"), sandbox, { filename: file });
+const ROOT = path.resolve(__dirname, "..");
+const readJson = relativePath => JSON.parse(fs.readFileSync(path.join(ROOT, relativePath), "utf8"));
+const sha256 = value => crypto.createHash("sha256").update(value).digest("hex");
+
+execFileSync(process.execPath, [path.join(ROOT, "tools", "validate-deck.cjs")], {
+  cwd: ROOT,
+  stdio: "inherit"
+});
+
+const rwsCards = readJson("data/rws-cards.json");
+const deck = readJson("decks/deck-01/deck.json");
+const baseline = readJson("tests/deck-01-migration-baseline.json");
+const template = readJson("decks/_template/deck.json");
+
+const canonicalContent = rwsCards.map(card => ({
+  ...card,
+  visualMotif: deck.cards[card.cardId].visualMotif,
+  upright: deck.cards[card.cardId].upright,
+  reversed: deck.cards[card.cardId].reversed
+}));
+if (sha256(JSON.stringify(canonicalContent)) !== baseline.contentSha256) {
+  throw new Error("Deck 01の文章またはRWS識別情報が移行時の正本から変わっています");
 }
 
-const cards = sandbox.window.CARD_DATA;
-const decks = sandbox.window.DECKS;
-if (!Array.isArray(cards) || cards.length !== 78) throw new Error("Deck 01 must contain exactly 78 cards");
-if (!Array.isArray(decks) || decks.length < 1) throw new Error("At least one deck is required");
-
-const expectedIds = Array.from({ length: 22 }, (_, index) => `major-${String(index).padStart(2, "0")}`);
-if (cards.slice(0, 22).map(card => card.id).join(",") !== expectedIds.join(",")) {
-  throw new Error("Major Arcana IDs must run continuously from major-00 to major-21");
-}
-if (new Set(cards.map(card => card.id)).size !== 78) throw new Error("Card IDs must be unique");
-for (const suit of ["wands", "cups", "swords", "pentacles"]) {
-  if (cards.filter(card => card.suit === suit).length !== 14) throw new Error(`${suit}: expected 14 cards`);
+for (const [file, expectedHash] of Object.entries(baseline.images)) {
+  const relativePath = file === "card-back.png"
+    ? "decks/deck-01/back.png"
+    : `decks/deck-01/cards/${file}`;
+  const actualHash = sha256(fs.readFileSync(path.join(ROOT, relativePath)));
+  if (actualHash !== expectedHash) throw new Error(`${relativePath}: Deck 01画像が正本から変わっています`);
 }
 
-const minorSvgDirectory = path.join("tools", ".minor-tmp");
-const minorSvgFiles = fs.readdirSync(minorSvgDirectory).filter(file => file.endsWith(".svg")).sort();
-if (minorSvgFiles.length !== 56) throw new Error(`Expected 56 generated Minor Arcana SVGs, found ${minorSvgFiles.length}`);
-const darkMinorSvgFiles = new Set(["swords-09.svg", "swords-10.svg", "pentacles-05.svg"]);
-for (const file of minorSvgFiles) {
-  const svg = fs.readFileSync(path.join(minorSvgDirectory, file), "utf8");
-  if (!/<text x="306" y="1080"[^>]*>[^<]+<\/text>/.test(svg)) throw new Error(`${file}: direct card-name text is missing`);
-  if (!/<clipPath id="artworkClip"><rect x="32" y="32" width="548" height="1142" rx="23"\/><\/clipPath>/.test(svg)) {
-    throw new Error(`${file}: shared artwork clip does not match the inside of the gold frame`);
-  }
-  if (!/<clipPath id="cardClip"><rect x="0" y="0" width="612" height="1206" rx="30"\/><\/clipPath>/.test(svg)) {
-    throw new Error(`${file}: shared outer card clip is missing`);
-  }
-  if (!/<g id="artwork" data-layer="artwork" clip-path="url\(#artworkClip\)">/.test(svg)) {
-    throw new Error(`${file}: artwork is not contained by the shared artwork clip`);
-  }
-  const expectedBase = darkMinorSvgFiles.has(file) ? "url(#nightPaper)" : "#f2eee6";
-  if (!svg.includes(`<rect x="0" y="0" width="612" height="1206" rx="30" fill="${expectedBase}"/>`)) {
-    throw new Error(`${file}: the full-card base does not use the expected background`);
-  }
-  const artworkStart = svg.indexOf('<g id="artwork"');
-  const artworkEnd = svg.indexOf('<rect id="gold-frame"', artworkStart);
-  const artworkMarkup = svg.slice(artworkStart, artworkEnd);
-  if (artworkMarkup.includes('fill="url(#nightPaper)"') || artworkMarkup.includes('fill="#f2eee6"')) {
-    throw new Error(`${file}: a card background remains inside the artwork layer`);
-  }
-  if (/<rect\b/.test(artworkMarkup) || /background(?:-color)?\s*[:=]/i.test(artworkMarkup)) {
-    throw new Error(`${file}: an independent artwork background surface remains`);
-  }
-  if (artworkMarkup.includes('M 5 260 Q 180 175 330 250') || artworkMarkup.includes('M 10 600 Q 170 520 325 590')) {
-    throw new Error(`${file}: a legacy scene-tint background path remains in the artwork layer`);
-  }
-  const baseIndex = svg.indexOf('<g id="card-base"');
-  const artworkIndex = svg.indexOf('<g id="artwork"');
-  const frameIndex = svg.indexOf('<rect id="gold-frame"');
-  const copyIndex = svg.indexOf('<g id="card-copy"');
-  if (!(baseIndex < artworkIndex && artworkIndex < frameIndex && frameIndex < copyIndex)) {
-    throw new Error(`${file}: card layers are not ordered base → artwork → frame → copy`);
-  }
-  const titleAreaPanels = [...svg.matchAll(/<rect\b([^>]*)\/?\s*>/g)].filter(match => {
-    const attrs = match[1];
-    const readNumber = name => Number((attrs.match(new RegExp(`\\b${name}="([\\d.]+)"`)) || [])[1] || 0);
-    const x = readNumber("x");
-    const y = readNumber("y");
-    const width = readNumber("width");
-    const height = readNumber("height");
-    const spansTitle = x <= 31 && width >= 550 && y < 1080 && y + height > 1080;
-    const allowedBase = attrs.includes('data-layer="card-base"') || attrs.includes('fill="#f2eee6"') || attrs.includes('fill="url(#nightPaper)"');
-    const allowedTexture = attrs.includes('filter="url(#grain)"');
-    const allowedClip = !attrs.includes("fill=") && !attrs.includes("filter=") &&
-      (attrs.includes('rx="23"') || attrs.includes('rx="30"'));
-    const allowedBorder = attrs.includes('fill="none"');
-    return spansTitle && !(allowedBase || allowedTexture || allowedClip || allowedBorder);
-  });
-  if (titleAreaPanels.length) throw new Error(`${file}: a separate title-area rectangle remains`);
+for (const [file, expectedHash] of Object.entries(baseline.unchangedAssets)) {
+  const actualHash = sha256(fs.readFileSync(path.join(ROOT, file)));
+  if (actualHash !== expectedHash) throw new Error(`${file}: UIまたは共通アセットが意図せず変わっています`);
 }
 
-const manifestPath = path.join("assets", "deck-01", "minor-build-manifest.json");
-if (!fs.existsSync(manifestPath)) throw new Error("Minor Arcana build manifest is missing");
-const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
-if (manifest.count !== 56 || manifest.files.length !== 56) throw new Error("Minor Arcana build manifest must contain 56 files");
-for (const record of manifest.files) {
-  const actual = crypto.createHash("sha256").update(fs.readFileSync(record.path)).digest("hex");
-  if (actual !== record.sha256) throw new Error(`${record.path}: hash differs from the current build manifest`);
+const expectedIds = rwsCards.map(card => card.cardId);
+if (Object.keys(template.cards).join(",") !== expectedIds.join(",")) {
+  throw new Error("_template/deck.jsonにRWS 78 IDが揃っていません");
 }
 
-for (const card of cards) {
-  for (const orientation of ["upright", "reversed"]) {
-    if (!Array.isArray(card[orientation].keywords) || card[orientation].keywords.length < 3) {
-      throw new Error(`${card.id}: keywords are missing`);
-    }
-    if (!card[orientation].meaning) throw new Error(`${card.id}: meaning is missing`);
-  }
-  for (const deck of decks) {
-    const deckCard = deck.cards[card.id];
-    if (!deckCard) throw new Error(`${deck.id}/${card.id}: deck data is missing`);
-    if (!deckCard.uprightQuestion || !deckCard.reversedQuestion) throw new Error(`${deck.id}/${card.id}: question is missing`);
-    if (deckCard.uprightQuestion === deckCard.reversedQuestion) throw new Error(`${deck.id}/${card.id}: questions must differ`);
-    const imagePath = path.join(process.cwd(), deckCard.image.replace(/^\.\//, ""));
-    if (!fs.existsSync(imagePath)) throw new Error(`${deck.id}/${card.id}: image not found`);
-    const dimensions = execFileSync("identify", ["-format", "%wx%h", imagePath], { encoding: "utf8" });
-    if (dimensions !== "612x1206") throw new Error(`${deck.id}/${card.id}: expected 612x1206, got ${dimensions}`);
-  }
+for (const required of [
+  "index.html",
+  "styles.css",
+  "app.js",
+  "service-worker.js",
+  "manifest.webmanifest",
+  "data/rws-cards.json",
+  "decks/index.json"
+]) {
+  if (!fs.existsSync(path.join(ROOT, required))) throw new Error(`${required}: 必須ファイルがありません`);
 }
 
-for (const deck of decks) {
-  if (!deck.backImage) throw new Error(`${deck.id}: deck-level back image is missing`);
-  const backImagePath = path.join(process.cwd(), deck.backImage.replace(/^\.\//, ""));
-  if (!fs.existsSync(backImagePath)) throw new Error(`${deck.id}: back image not found`);
-  const dimensions = execFileSync("identify", ["-format", "%wx%h", backImagePath], { encoding: "utf8" });
-  if (dimensions !== "612x1206") throw new Error(`${deck.id}: back image must be 612x1206, got ${dimensions}`);
+const indexSource = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+if (/src="\/|href="\//.test(indexSource)) throw new Error("index.htmlにGitHub Pages非互換の絶対パスがあります");
+if (/data\/cards\.js|data\/minor-cards\.js|deck-01(?:-minor)?\.js/.test(indexSource)) {
+  throw new Error("index.htmlに旧Deck 01専用scriptが残っています");
 }
 
-for (const required of ["index.html", "styles.css", "app.js", "service-worker.js", "manifest.webmanifest"]) {
-  if (!fs.existsSync(required)) throw new Error(`${required}: required PWA file is missing`);
-}
-
-const appSource = fs.readFileSync("app.js", "utf8");
+const appSource = fs.readFileSync(path.join(ROOT, "app.js"), "utf8");
 if (appSource.includes("Asia/Tokyo") || appSource.includes("TOKYO_TZ")) {
-  throw new Error("The daily boundary must use the device's local date, not a fixed timezone");
+  throw new Error("日付境界は固定タイムゾーンではなく端末現地時間を使う必要があります");
 }
-if (!appSource.includes('deck.backImage') || appSource.includes('drawBack.classList.add("is-reversed")')) {
-  throw new Error("The pre-draw card back must come from the selected deck and remain upright");
+if (!appSource.includes('const DB_VERSION = 1;')) throw new Error("既存IndexedDBのDB versionが変わっています");
+for (const requiredFragment of [
+  '"./data/rws-cards.json"',
+  '"./decks/index.json"',
+  "deckContentVersion",
+  "snapshot: createSnapshot",
+  "version: 2"
+]) {
+  if (!appSource.includes(requiredFragment)) throw new Error(`app.jsに ${requiredFragment} がありません`);
 }
-
-for (const icon of ["icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png"]) {
-  if (!fs.existsSync(path.join("assets/icons", icon))) throw new Error(`${icon}: app icon is missing`);
-}
-
-const serviceWorkerSource = fs.readFileSync("service-worker.js", "utf8");
-const cachedPaths = [...serviceWorkerSource.matchAll(/"\.\/(.+?)"/g)].map(match => match[1]);
-for (const cachedPath of cachedPaths.filter(item => !item.includes("${"))) {
-  if (!fs.existsSync(cachedPath)) throw new Error(`${cachedPath}: offline cache target is missing`);
-}
-for (const deck of decks) {
-  const backImagePath = deck.backImage.replace(/^\.\//, "");
-  if (!cachedPaths.includes(backImagePath)) throw new Error(`${backImagePath}: deck back is missing from the offline cache`);
-  for (const deckCard of Object.values(deck.cards)) {
-    const imagePath = deckCard.image.replace(/^\.\//, "");
-    const isMinorGenerated = /assets\/deck-01\/(wands|cups|swords|pentacles)-/.test(imagePath) && serviceWorkerSource.includes("...MINOR_ARCANA");
-    if (!cachedPaths.includes(imagePath) && !isMinorGenerated) throw new Error(`${imagePath}: deck image is missing from the offline cache`);
-  }
+if (/uprightQuestion|reversedQuestion/.test(appSource)) {
+  throw new Error("app.jsが旧Deck 01固有question形式を参照しています");
 }
 
-console.log(`Validated ${cards.length} cards across ${decks.length} complete deck(s), including all 56 Minor Arcana title areas.`);
+const serviceWorkerSource = fs.readFileSync(path.join(ROOT, "service-worker.js"), "utf8");
+if (!serviceWorkerSource.includes("cacheRegisteredDecks") || !serviceWorkerSource.includes("./decks/index.json")) {
+  throw new Error("Service Workerが登録デッキを動的にキャッシュしません");
+}
+if (serviceWorkerSource.includes("deck-01")) {
+  throw new Error("Service WorkerにDeck 01の直書きが残っています");
+}
+
+console.log("Validated Deck 01 migration, UI asset integrity, JSON loading, history v1/v2 compatibility hooks, and dynamic PWA caching.");

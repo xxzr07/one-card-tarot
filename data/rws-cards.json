@@ -1,0 +1,991 @@
+[
+  {
+    "cardId": "major-00",
+    "number": "0",
+    "nameEn": "THE FOOL",
+    "suit": "major",
+    "rank": "00",
+    "rwsSymbols": [
+      "崖",
+      "白い犬",
+      "小さな荷物",
+      "白い薔薇",
+      "太陽"
+    ]
+  },
+  {
+    "cardId": "major-01",
+    "number": "I",
+    "nameEn": "THE MAGICIAN",
+    "suit": "major",
+    "rank": "01",
+    "rwsSymbols": [
+      "無限記号",
+      "杖",
+      "杯",
+      "剣",
+      "金貨",
+      "上下を結ぶ手"
+    ]
+  },
+  {
+    "cardId": "major-02",
+    "number": "II",
+    "nameEn": "THE HIGH PRIESTESS",
+    "suit": "major",
+    "rank": "02",
+    "rwsSymbols": [
+      "黒と白の柱",
+      "ヴェール",
+      "柘榴",
+      "三日月",
+      "巻物",
+      "水"
+    ]
+  },
+  {
+    "cardId": "major-03",
+    "number": "III",
+    "nameEn": "THE EMPRESS",
+    "suit": "major",
+    "rank": "03",
+    "rwsSymbols": [
+      "十二の星",
+      "麦",
+      "森",
+      "川",
+      "金星記号",
+      "豊かな衣"
+    ]
+  },
+  {
+    "cardId": "major-04",
+    "number": "IV",
+    "nameEn": "THE EMPEROR",
+    "suit": "major",
+    "rank": "04",
+    "rwsSymbols": [
+      "石の玉座",
+      "牡羊",
+      "山",
+      "赤い衣",
+      "宝珠",
+      "鎧"
+    ]
+  },
+  {
+    "cardId": "major-05",
+    "number": "V",
+    "nameEn": "THE HIEROPHANT",
+    "suit": "major",
+    "rank": "05",
+    "rwsSymbols": [
+      "二本の柱",
+      "三重冠",
+      "祝福の手",
+      "交差する鍵",
+      "二人の弟子"
+    ]
+  },
+  {
+    "cardId": "major-06",
+    "number": "VI",
+    "nameEn": "THE LOVERS",
+    "suit": "major",
+    "rank": "06",
+    "rwsSymbols": [
+      "二人の人物",
+      "天使",
+      "太陽",
+      "知恵の樹と蛇",
+      "炎の樹",
+      "山"
+    ]
+  },
+  {
+    "cardId": "major-07",
+    "number": "VII",
+    "nameEn": "THE CHARIOT",
+    "suit": "major",
+    "rank": "07",
+    "rwsSymbols": [
+      "戦車",
+      "星の天蓋",
+      "黒と白のスフィンクス",
+      "城",
+      "杖"
+    ]
+  },
+  {
+    "cardId": "major-08",
+    "number": "VIII",
+    "nameEn": "STRENGTH",
+    "suit": "major",
+    "rank": "08",
+    "rwsSymbols": [
+      "獅子",
+      "無限記号",
+      "花の鎖",
+      "白い衣",
+      "山"
+    ]
+  },
+  {
+    "cardId": "major-09",
+    "number": "IX",
+    "nameEn": "THE HERMIT",
+    "suit": "major",
+    "rank": "09",
+    "rwsSymbols": [
+      "灯火",
+      "六芒星",
+      "杖",
+      "雪山",
+      "灰色の外套"
+    ]
+  },
+  {
+    "cardId": "major-10",
+    "number": "X",
+    "nameEn": "WHEEL OF FORTUNE",
+    "suit": "major",
+    "rank": "10",
+    "rwsSymbols": [
+      "車輪",
+      "スフィンクス",
+      "蛇",
+      "四つの有翼像",
+      "錬金術記号"
+    ]
+  },
+  {
+    "cardId": "major-11",
+    "number": "XI",
+    "nameEn": "JUSTICE",
+    "suit": "major",
+    "rank": "11",
+    "rwsSymbols": [
+      "天秤",
+      "剣",
+      "二本の柱",
+      "冠",
+      "赤い衣"
+    ]
+  },
+  {
+    "cardId": "major-12",
+    "number": "XII",
+    "nameEn": "THE HANGED MAN",
+    "suit": "major",
+    "rank": "12",
+    "rwsSymbols": [
+      "生きた木",
+      "片足で吊られた人物",
+      "交差する脚",
+      "光輪"
+    ]
+  },
+  {
+    "cardId": "major-13",
+    "number": "XIII",
+    "nameEn": "DEATH",
+    "suit": "major",
+    "rank": "13",
+    "rwsSymbols": [
+      "白い薔薇の旗",
+      "黒い甲冑",
+      "沈む王",
+      "昇る太陽",
+      "川"
+    ]
+  },
+  {
+    "cardId": "major-14",
+    "number": "XIV",
+    "nameEn": "TEMPERANCE",
+    "suit": "major",
+    "rank": "14",
+    "rwsSymbols": [
+      "二つの杯",
+      "水と陸に置く足",
+      "三角形",
+      "道",
+      "昇る光"
+    ]
+  },
+  {
+    "cardId": "major-15",
+    "number": "XV",
+    "nameEn": "THE DEVIL",
+    "suit": "major",
+    "rank": "15",
+    "rwsSymbols": [
+      "逆五芒星",
+      "角を持つ像",
+      "松明",
+      "鎖につながれた二人",
+      "台座"
+    ]
+  },
+  {
+    "cardId": "major-16",
+    "number": "XVI",
+    "nameEn": "THE TOWER",
+    "suit": "major",
+    "rank": "16",
+    "rwsSymbols": [
+      "塔",
+      "稲妻",
+      "落ちる王冠",
+      "炎",
+      "落下する二人"
+    ]
+  },
+  {
+    "cardId": "major-17",
+    "number": "XVII",
+    "nameEn": "THE STAR",
+    "suit": "major",
+    "rank": "17",
+    "rwsSymbols": [
+      "八芒星",
+      "七つの星",
+      "水瓶",
+      "水面",
+      "大地",
+      "鳥"
+    ]
+  },
+  {
+    "cardId": "major-18",
+    "number": "XVIII",
+    "nameEn": "THE MOON",
+    "suit": "major",
+    "rank": "18",
+    "rwsSymbols": [
+      "月",
+      "二本の塔",
+      "犬と狼",
+      "水から出る蟹",
+      "曲がる小道"
+    ]
+  },
+  {
+    "cardId": "major-19",
+    "number": "XIX",
+    "nameEn": "THE SUN",
+    "suit": "major",
+    "rank": "19",
+    "rwsSymbols": [
+      "太陽",
+      "四本の向日葵",
+      "白馬",
+      "子ども",
+      "赤い旗",
+      "壁"
+    ]
+  },
+  {
+    "cardId": "major-20",
+    "number": "XX",
+    "nameEn": "JUDGEMENT",
+    "suit": "major",
+    "rank": "20",
+    "rwsSymbols": [
+      "天使",
+      "ラッパ",
+      "旗",
+      "棺から立つ人々",
+      "山と水"
+    ]
+  },
+  {
+    "cardId": "major-21",
+    "number": "XXI",
+    "nameEn": "THE WORLD",
+    "suit": "major",
+    "rank": "21",
+    "rwsSymbols": [
+      "月桂樹の輪",
+      "踊る人物",
+      "二本の杖",
+      "人・鷲・牛・獅子"
+    ]
+  },
+  {
+    "cardId": "wands-ace",
+    "number": "A",
+    "nameEn": "ACE OF WANDS",
+    "suit": "wands",
+    "rank": "ace",
+    "rwsSymbols": [
+      "芽吹く一本の杖",
+      "遠い丘",
+      "細い道"
+    ]
+  },
+  {
+    "cardId": "wands-02",
+    "number": "2",
+    "nameEn": "TWO OF WANDS",
+    "suit": "wands",
+    "rank": "02",
+    "rwsSymbols": [
+      "二本の杖",
+      "小さな地球",
+      "海と城壁"
+    ]
+  },
+  {
+    "cardId": "wands-03",
+    "number": "3",
+    "nameEn": "THREE OF WANDS",
+    "suit": "wands",
+    "rank": "03",
+    "rwsSymbols": [
+      "三本の杖",
+      "海",
+      "遠い船"
+    ]
+  },
+  {
+    "cardId": "wands-04",
+    "number": "4",
+    "nameEn": "FOUR OF WANDS",
+    "suit": "wands",
+    "rank": "04",
+    "rwsSymbols": [
+      "四本の杖",
+      "花綱",
+      "遠い建物"
+    ]
+  },
+  {
+    "cardId": "wands-05",
+    "number": "5",
+    "nameEn": "FIVE OF WANDS",
+    "suit": "wands",
+    "rank": "05",
+    "rwsSymbols": [
+      "交差する五本の杖",
+      "異なる角度",
+      "舞う火花"
+    ]
+  },
+  {
+    "cardId": "wands-06",
+    "number": "6",
+    "nameEn": "SIX OF WANDS",
+    "suit": "wands",
+    "rank": "06",
+    "rwsSymbols": [
+      "月桂樹を結んだ杖",
+      "六本の列",
+      "進路"
+    ]
+  },
+  {
+    "cardId": "wands-07",
+    "number": "7",
+    "nameEn": "SEVEN OF WANDS",
+    "suit": "wands",
+    "rank": "07",
+    "rwsSymbols": [
+      "一本と六本の杖",
+      "高低差",
+      "足場"
+    ]
+  },
+  {
+    "cardId": "wands-08",
+    "number": "8",
+    "nameEn": "EIGHT OF WANDS",
+    "suit": "wands",
+    "rank": "08",
+    "rwsSymbols": [
+      "飛ぶ八本の杖",
+      "川",
+      "澄んだ空"
+    ]
+  },
+  {
+    "cardId": "wands-09",
+    "number": "9",
+    "nameEn": "NINE OF WANDS",
+    "suit": "wands",
+    "rank": "09",
+    "rwsSymbols": [
+      "九本の杖",
+      "一本の包帯",
+      "柵"
+    ]
+  },
+  {
+    "cardId": "wands-10",
+    "number": "10",
+    "nameEn": "TEN OF WANDS",
+    "suit": "wands",
+    "rank": "10",
+    "rwsSymbols": [
+      "束ねた十本の杖",
+      "坂道",
+      "遠い町"
+    ]
+  },
+  {
+    "cardId": "wands-page",
+    "number": "PAGE",
+    "nameEn": "PAGE OF WANDS",
+    "suit": "wands",
+    "rank": "page",
+    "rwsSymbols": [
+      "芽吹く杖",
+      "砂丘",
+      "小さなマント"
+    ]
+  },
+  {
+    "cardId": "wands-knight",
+    "number": "KNIGHT",
+    "nameEn": "KNIGHT OF WANDS",
+    "suit": "wands",
+    "rank": "knight",
+    "rwsSymbols": [
+      "跳ぶ馬",
+      "斜めの杖",
+      "炎の羽"
+    ]
+  },
+  {
+    "cardId": "wands-queen",
+    "number": "QUEEN",
+    "nameEn": "QUEEN OF WANDS",
+    "suit": "wands",
+    "rank": "queen",
+    "rwsSymbols": [
+      "向日葵",
+      "黒猫",
+      "花咲く杖",
+      "玉座"
+    ]
+  },
+  {
+    "cardId": "wands-king",
+    "number": "KING",
+    "nameEn": "KING OF WANDS",
+    "suit": "wands",
+    "rank": "king",
+    "rwsSymbols": [
+      "花咲く杖",
+      "火蜥蜴",
+      "高い座",
+      "火の冠"
+    ]
+  },
+  {
+    "cardId": "cups-ace",
+    "number": "A",
+    "nameEn": "ACE OF CUPS",
+    "suit": "cups",
+    "rank": "ace",
+    "rwsSymbols": [
+      "一つの杯",
+      "五本の水",
+      "白い蓮"
+    ]
+  },
+  {
+    "cardId": "cups-02",
+    "number": "2",
+    "nameEn": "TWO OF CUPS",
+    "suit": "cups",
+    "rank": "02",
+    "rwsSymbols": [
+      "二つの杯",
+      "翼の印",
+      "交差する流れ"
+    ]
+  },
+  {
+    "cardId": "cups-03",
+    "number": "3",
+    "nameEn": "THREE OF CUPS",
+    "suit": "cups",
+    "rank": "03",
+    "rwsSymbols": [
+      "三つの杯",
+      "果実",
+      "花の輪"
+    ]
+  },
+  {
+    "cardId": "cups-04",
+    "number": "4",
+    "nameEn": "FOUR OF CUPS",
+    "suit": "cups",
+    "rank": "04",
+    "rwsSymbols": [
+      "地上の三つの杯",
+      "差し出される一つ",
+      "木陰"
+    ]
+  },
+  {
+    "cardId": "cups-05",
+    "number": "5",
+    "nameEn": "FIVE OF CUPS",
+    "suit": "cups",
+    "rank": "05",
+    "rwsSymbols": [
+      "倒れた三つの杯",
+      "立つ二つ",
+      "橋"
+    ]
+  },
+  {
+    "cardId": "cups-06",
+    "number": "6",
+    "nameEn": "SIX OF CUPS",
+    "suit": "cups",
+    "rank": "06",
+    "rwsSymbols": [
+      "花を満たした六つの杯",
+      "中庭",
+      "小さな門"
+    ]
+  },
+  {
+    "cardId": "cups-07",
+    "number": "7",
+    "nameEn": "SEVEN OF CUPS",
+    "suit": "cups",
+    "rank": "07",
+    "rwsSymbols": [
+      "雲上の七つの杯",
+      "宝石",
+      "塔",
+      "月桂樹",
+      "影"
+    ]
+  },
+  {
+    "cardId": "cups-08",
+    "number": "8",
+    "nameEn": "EIGHT OF CUPS",
+    "suit": "cups",
+    "rank": "08",
+    "rwsSymbols": [
+      "積まれた八つの杯",
+      "欠けた月",
+      "山道"
+    ]
+  },
+  {
+    "cardId": "cups-09",
+    "number": "9",
+    "nameEn": "NINE OF CUPS",
+    "suit": "cups",
+    "rank": "09",
+    "rwsSymbols": [
+      "弧に並ぶ九つの杯",
+      "幕",
+      "金の座"
+    ]
+  },
+  {
+    "cardId": "cups-10",
+    "number": "10",
+    "nameEn": "TEN OF CUPS",
+    "suit": "cups",
+    "rank": "10",
+    "rwsSymbols": [
+      "虹状の十の杯",
+      "家",
+      "二対の形"
+    ]
+  },
+  {
+    "cardId": "cups-page",
+    "number": "PAGE",
+    "nameEn": "PAGE OF CUPS",
+    "suit": "cups",
+    "rank": "page",
+    "rwsSymbols": [
+      "魚の現れる杯",
+      "波",
+      "淡いマント"
+    ]
+  },
+  {
+    "cardId": "cups-knight",
+    "number": "KNIGHT",
+    "nameEn": "KNIGHT OF CUPS",
+    "suit": "cups",
+    "rank": "knight",
+    "rwsSymbols": [
+      "ゆっくり進む馬",
+      "一つの杯",
+      "川"
+    ]
+  },
+  {
+    "cardId": "cups-queen",
+    "number": "QUEEN",
+    "nameEn": "QUEEN OF CUPS",
+    "suit": "cups",
+    "rank": "queen",
+    "rwsSymbols": [
+      "蓋のある杯",
+      "海辺の座",
+      "貝殻"
+    ]
+  },
+  {
+    "cardId": "cups-king",
+    "number": "KING",
+    "nameEn": "KING OF CUPS",
+    "suit": "cups",
+    "rank": "king",
+    "rwsSymbols": [
+      "海上の座",
+      "一つの杯",
+      "船と魚"
+    ]
+  },
+  {
+    "cardId": "swords-ace",
+    "number": "A",
+    "nameEn": "ACE OF SWORDS",
+    "suit": "swords",
+    "rank": "ace",
+    "rwsSymbols": [
+      "一本の剣",
+      "冠",
+      "二枚の葉"
+    ]
+  },
+  {
+    "cardId": "swords-02",
+    "number": "2",
+    "nameEn": "TWO OF SWORDS",
+    "suit": "swords",
+    "rank": "02",
+    "rwsSymbols": [
+      "交差する二本の剣",
+      "目隠しの帯",
+      "月と海"
+    ]
+  },
+  {
+    "cardId": "swords-03",
+    "number": "3",
+    "nameEn": "THREE OF SWORDS",
+    "suit": "swords",
+    "rank": "03",
+    "rwsSymbols": [
+      "三本の剣",
+      "心臓形",
+      "雨雲"
+    ]
+  },
+  {
+    "cardId": "swords-04",
+    "number": "4",
+    "nameEn": "FOUR OF SWORDS",
+    "suit": "swords",
+    "rank": "04",
+    "rwsSymbols": [
+      "壁の三本の剣",
+      "横たわる一本",
+      "窓の光"
+    ]
+  },
+  {
+    "cardId": "swords-05",
+    "number": "5",
+    "nameEn": "FIVE OF SWORDS",
+    "suit": "swords",
+    "rank": "05",
+    "rwsSymbols": [
+      "手前の三本の剣",
+      "遠い二本",
+      "荒い空"
+    ]
+  },
+  {
+    "cardId": "swords-06",
+    "number": "6",
+    "nameEn": "SIX OF SWORDS",
+    "suit": "swords",
+    "rank": "06",
+    "rwsSymbols": [
+      "舟に立つ六本の剣",
+      "二つの水面",
+      "遠い岸"
+    ]
+  },
+  {
+    "cardId": "swords-07",
+    "number": "7",
+    "nameEn": "SEVEN OF SWORDS",
+    "suit": "swords",
+    "rank": "07",
+    "rwsSymbols": [
+      "運ばれる五本の剣",
+      "残る二本",
+      "遠い天幕"
+    ]
+  },
+  {
+    "cardId": "swords-08",
+    "number": "8",
+    "nameEn": "EIGHT OF SWORDS",
+    "suit": "swords",
+    "rank": "08",
+    "rwsSymbols": [
+      "囲う八本の剣",
+      "白い帯",
+      "泥地"
+    ]
+  },
+  {
+    "cardId": "swords-09",
+    "number": "9",
+    "nameEn": "NINE OF SWORDS",
+    "suit": "swords",
+    "rank": "09",
+    "rwsSymbols": [
+      "水平に並ぶ九本の剣",
+      "黒い夜",
+      "一条の光"
+    ]
+  },
+  {
+    "cardId": "swords-10",
+    "number": "10",
+    "nameEn": "TEN OF SWORDS",
+    "suit": "swords",
+    "rank": "10",
+    "rwsSymbols": [
+      "十本の剣",
+      "黒い地面",
+      "黄金の夜明け"
+    ]
+  },
+  {
+    "cardId": "swords-page",
+    "number": "PAGE",
+    "nameEn": "PAGE OF SWORDS",
+    "suit": "swords",
+    "rank": "page",
+    "rwsSymbols": [
+      "掲げた剣",
+      "強い風",
+      "鳥"
+    ]
+  },
+  {
+    "cardId": "swords-knight",
+    "number": "KNIGHT",
+    "nameEn": "KNIGHT OF SWORDS",
+    "suit": "swords",
+    "rank": "knight",
+    "rwsSymbols": [
+      "走る馬",
+      "前向きの剣",
+      "嵐の雲"
+    ]
+  },
+  {
+    "cardId": "swords-queen",
+    "number": "QUEEN",
+    "nameEn": "QUEEN OF SWORDS",
+    "suit": "swords",
+    "rank": "queen",
+    "rwsSymbols": [
+      "直立する剣",
+      "雲の座",
+      "一羽の鳥"
+    ]
+  },
+  {
+    "cardId": "swords-king",
+    "number": "KING",
+    "nameEn": "KING OF SWORDS",
+    "suit": "swords",
+    "rank": "king",
+    "rwsSymbols": [
+      "高い座",
+      "垂直の剣",
+      "蝶と雲"
+    ]
+  },
+  {
+    "cardId": "pentacles-ace",
+    "number": "A",
+    "nameEn": "ACE OF PENTACLES",
+    "suit": "pentacles",
+    "rank": "ace",
+    "rwsSymbols": [
+      "正円の金貨",
+      "庭の門",
+      "山へ続く道"
+    ]
+  },
+  {
+    "cardId": "pentacles-02",
+    "number": "2",
+    "nameEn": "TWO OF PENTACLES",
+    "suit": "pentacles",
+    "rank": "02",
+    "rwsSymbols": [
+      "二つの金貨",
+      "無限記号",
+      "波と船"
+    ]
+  },
+  {
+    "cardId": "pentacles-03",
+    "number": "3",
+    "nameEn": "THREE OF PENTACLES",
+    "suit": "pentacles",
+    "rank": "03",
+    "rwsSymbols": [
+      "アーチの三つの金貨",
+      "設計線",
+      "石の階段"
+    ]
+  },
+  {
+    "cardId": "pentacles-04",
+    "number": "4",
+    "nameEn": "FOUR OF PENTACLES",
+    "suit": "pentacles",
+    "rank": "04",
+    "rwsSymbols": [
+      "十字に置かれた四つの金貨",
+      "閉じた門",
+      "石床"
+    ]
+  },
+  {
+    "cardId": "pentacles-05",
+    "number": "5",
+    "nameEn": "FIVE OF PENTACLES",
+    "suit": "pentacles",
+    "rank": "05",
+    "rwsSymbols": [
+      "窓の五つの金貨",
+      "雪",
+      "二本の足跡"
+    ]
+  },
+  {
+    "cardId": "pentacles-06",
+    "number": "6",
+    "nameEn": "SIX OF PENTACLES",
+    "suit": "pentacles",
+    "rank": "06",
+    "rwsSymbols": [
+      "六つの金貨",
+      "天秤",
+      "差し出す二つの器"
+    ]
+  },
+  {
+    "cardId": "pentacles-07",
+    "number": "7",
+    "nameEn": "SEVEN OF PENTACLES",
+    "suit": "pentacles",
+    "rank": "07",
+    "rwsSymbols": [
+      "蔓の七つの金貨",
+      "支柱",
+      "土"
+    ]
+  },
+  {
+    "cardId": "pentacles-08",
+    "number": "8",
+    "nameEn": "EIGHT OF PENTACLES",
+    "suit": "pentacles",
+    "rank": "08",
+    "rwsSymbols": [
+      "縦に並ぶ八つの金貨",
+      "作業台",
+      "小さな鑿"
+    ]
+  },
+  {
+    "cardId": "pentacles-09",
+    "number": "9",
+    "nameEn": "NINE OF PENTACLES",
+    "suit": "pentacles",
+    "rank": "09",
+    "rwsSymbols": [
+      "庭の九つの金貨",
+      "葡萄",
+      "隼"
+    ]
+  },
+  {
+    "cardId": "pentacles-10",
+    "number": "10",
+    "nameEn": "TEN OF PENTACLES",
+    "suit": "pentacles",
+    "rank": "10",
+    "rwsSymbols": [
+      "生命の樹状の十の金貨",
+      "石の門",
+      "二匹の犬"
+    ]
+  },
+  {
+    "cardId": "pentacles-page",
+    "number": "PAGE",
+    "nameEn": "PAGE OF PENTACLES",
+    "suit": "pentacles",
+    "rank": "page",
+    "rwsSymbols": [
+      "掲げた一つの金貨",
+      "耕地",
+      "小さな芽"
+    ]
+  },
+  {
+    "cardId": "pentacles-knight",
+    "number": "KNIGHT",
+    "nameEn": "KNIGHT OF PENTACLES",
+    "suit": "pentacles",
+    "rank": "knight",
+    "rwsSymbols": [
+      "止まる黒い馬",
+      "一つの金貨",
+      "耕された畑"
+    ]
+  },
+  {
+    "cardId": "pentacles-queen",
+    "number": "QUEEN",
+    "nameEn": "QUEEN OF PENTACLES",
+    "suit": "pentacles",
+    "rank": "queen",
+    "rwsSymbols": [
+      "葉に囲まれた正円",
+      "石の座",
+      "野兎"
+    ]
+  },
+  {
+    "cardId": "pentacles-king",
+    "number": "KING",
+    "nameEn": "KING OF PENTACLES",
+    "suit": "pentacles",
+    "rank": "king",
+    "rwsSymbols": [
+      "葡萄の座",
+      "一つの金貨",
+      "城"
+    ]
+  }
+]

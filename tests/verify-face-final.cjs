@@ -1,23 +1,16 @@
 const fs = require("node:fs");
 const path = require("node:path");
-const vm = require("node:vm");
 const sharp = require("sharp");
 const { CARD_WIDTH, CARD_HEIGHT, CARD_RADIUS } = require("../tools/card-output.cjs");
 
 const ROOT = path.resolve(__dirname, "..");
-const sandbox = { window: {} };
-vm.createContext(sandbox);
-for (const file of ["data/cards.js", "data/minor-cards.js"]) {
-  vm.runInContext(fs.readFileSync(path.join(ROOT, file), "utf8"), sandbox, { filename: file });
-}
-
-const cards = sandbox.window.CARD_DATA;
+const cards = JSON.parse(fs.readFileSync(path.join(ROOT, "data", "rws-cards.json"), "utf8"));
 const normalMajorIds = [0, 1, 2, 3, 5, 8, 10, 12, 14, 16, 19, 20, 21]
   .map(index => `major-${String(index).padStart(2, "0")}`);
 const darkMinorIds = new Set(["swords-09", "swords-10", "pentacles-05"]);
 const normalMinorIds = cards
-  .filter(card => card.suit !== "major" && !darkMinorIds.has(card.id))
-  .map(card => card.id);
+  .filter(card => card.suit !== "major" && !darkMinorIds.has(card.cardId))
+  .map(card => card.cardId);
 
 function median(values) {
   const sorted = [...values].sort((a, b) => a - b);
@@ -26,7 +19,7 @@ function median(values) {
 }
 
 async function pixels(id) {
-  const file = path.join(ROOT, "assets", "deck-01", `${id}.png`);
+  const file = path.join(ROOT, "decks", "deck-01", "cards", `${id}.png`);
   const result = await sharp(file).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
   if (result.info.width !== CARD_WIDTH || result.info.height !== CARD_HEIGHT || result.info.channels !== 4) {
     throw new Error(`${id}: expected ${CARD_WIDTH}x${CARD_HEIGHT} RGBA output`);
@@ -56,11 +49,11 @@ async function main() {
   if (cards.length !== 78) throw new Error(`Expected 78 cards, found ${cards.length}`);
   const cardPixels = new Map();
   for (const card of cards) {
-    const data = await pixels(card.id);
-    cardPixels.set(card.id, data);
+    const data = await pixels(card.cardId);
+    cardPixels.set(card.cardId, data);
     const corners = [[0, 0], [CARD_WIDTH - 1, 0], [0, CARD_HEIGHT - 1], [CARD_WIDTH - 1, CARD_HEIGHT - 1]];
     if (corners.some(([x, y]) => alphaAt(data, x, y) !== 0)) {
-      throw new Error(`${card.id}: a non-transparent outer corner remains`);
+      throw new Error(`${card.cardId}: a non-transparent outer corner remains`);
     }
   }
 

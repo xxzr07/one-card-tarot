@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "defaultDeckId": "deck-01",
+  "decks": [
+    {
+      "id": "deck-01",
+      "enabled": true,
+      "manifest": "./deck-01/deck.json"
+    }
+  ]
+}

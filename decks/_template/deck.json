@@ -1,0 +1,1109 @@
+{
+  "schemaVersion": 2,
+  "id": "deck-XX",
+  "contentVersion": "1.0.0",
+  "name": "DECK XX",
+  "subtitle": "SUBTITLE",
+  "description": "デッキの短い説明を入力してください。",
+  "previewCardId": "major-00",
+  "backImage": "./back.png",
+  "imageSpec": {
+    "width": 612,
+    "height": 1206,
+    "format": "png"
+  },
+  "cards": {
+    "major-00": {
+      "image": "./cards/major-00.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "major-01": {
+      "image": "./cards/major-01.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "major-02": {
+      "image": "./cards/major-02.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "major-03": {
+      "image": "./cards/major-03.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "major-04": {
+      "image": "./cards/major-04.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "major-05": {
+      "image": "./cards/major-05.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "major-06": {
+      "image": "./cards/major-06.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "major-07": {
+      "image": "./cards/major-07.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "major-08": {
+      "image": "./cards/major-08.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "major-09": {
+      "image": "./cards/major-09.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "major-10": {
+      "image": "./cards/major-10.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "major-11": {
+      "image": "./cards/major-11.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "major-12": {
+      "image": "./cards/major-12.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "major-13": {
+      "image": "./cards/major-13.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "major-14": {
+      "image": "./cards/major-14.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "major-15": {
+      "image": "./cards/major-15.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "major-16": {
+      "image": "./cards/major-16.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "major-17": {
+      "image": "./cards/major-17.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "major-18": {
+      "image": "./cards/major-18.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "major-19": {
+      "image": "./cards/major-19.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "major-20": {
+      "image": "./cards/major-20.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "major-21": {
+      "image": "./cards/major-21.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "wands-ace": {
+      "image": "./cards/wands-ace.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "wands-02": {
+      "image": "./cards/wands-02.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "wands-03": {
+      "image": "./cards/wands-03.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "wands-04": {
+      "image": "./cards/wands-04.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "wands-05": {
+      "image": "./cards/wands-05.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "wands-06": {
+      "image": "./cards/wands-06.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "wands-07": {
+      "image": "./cards/wands-07.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "wands-08": {
+      "image": "./cards/wands-08.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "wands-09": {
+      "image": "./cards/wands-09.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "wands-10": {
+      "image": "./cards/wands-10.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "wands-page": {
+      "image": "./cards/wands-page.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "wands-knight": {
+      "image": "./cards/wands-knight.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "wands-queen": {
+      "image": "./cards/wands-queen.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "wands-king": {
+      "image": "./cards/wands-king.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "cups-ace": {
+      "image": "./cards/cups-ace.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "cups-02": {
+      "image": "./cards/cups-02.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "cups-03": {
+      "image": "./cards/cups-03.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "cups-04": {
+      "image": "./cards/cups-04.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "cups-05": {
+      "image": "./cards/cups-05.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "cups-06": {
+      "image": "./cards/cups-06.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "cups-07": {
+      "image": "./cards/cups-07.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "cups-08": {
+      "image": "./cards/cups-08.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "cups-09": {
+      "image": "./cards/cups-09.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "cups-10": {
+      "image": "./cards/cups-10.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "cups-page": {
+      "image": "./cards/cups-page.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "cups-knight": {
+      "image": "./cards/cups-knight.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "cups-queen": {
+      "image": "./cards/cups-queen.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "cups-king": {
+      "image": "./cards/cups-king.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "swords-ace": {
+      "image": "./cards/swords-ace.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "swords-02": {
+      "image": "./cards/swords-02.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "swords-03": {
+      "image": "./cards/swords-03.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "swords-04": {
+      "image": "./cards/swords-04.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "swords-05": {
+      "image": "./cards/swords-05.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "swords-06": {
+      "image": "./cards/swords-06.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "swords-07": {
+      "image": "./cards/swords-07.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "swords-08": {
+      "image": "./cards/swords-08.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "swords-09": {
+      "image": "./cards/swords-09.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "swords-10": {
+      "image": "./cards/swords-10.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "swords-page": {
+      "image": "./cards/swords-page.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "swords-knight": {
+      "image": "./cards/swords-knight.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "swords-queen": {
+      "image": "./cards/swords-queen.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "swords-king": {
+      "image": "./cards/swords-king.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "pentacles-ace": {
+      "image": "./cards/pentacles-ace.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "pentacles-02": {
+      "image": "./cards/pentacles-02.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "pentacles-03": {
+      "image": "./cards/pentacles-03.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "pentacles-04": {
+      "image": "./cards/pentacles-04.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "pentacles-05": {
+      "image": "./cards/pentacles-05.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "pentacles-06": {
+      "image": "./cards/pentacles-06.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "pentacles-07": {
+      "image": "./cards/pentacles-07.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "pentacles-08": {
+      "image": "./cards/pentacles-08.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "pentacles-09": {
+      "image": "./cards/pentacles-09.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "pentacles-10": {
+      "image": "./cards/pentacles-10.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "pentacles-page": {
+      "image": "./cards/pentacles-page.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "pentacles-knight": {
+      "image": "./cards/pentacles-knight.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "pentacles-queen": {
+      "image": "./cards/pentacles-queen.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    },
+    "pentacles-king": {
+      "image": "./cards/pentacles-king.png",
+      "visualMotif": "",
+      "upright": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      },
+      "reversed": {
+        "keywords": [],
+        "meaning": "",
+        "question": ""
+      }
+    }
+  }
+}
