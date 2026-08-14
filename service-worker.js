@@ -1,4 +1,4 @@
-const CACHE_NAME = "one-card-content-v17";
+const CACHE_NAME = "one-card-content-v18";
 const scopeUrl = self.registration.scope;
 const deckIndexUrl = new URL("./decks/index.json", scopeUrl).href;
 const indexUrl = new URL("./index.html", scopeUrl).href;
@@ -17,6 +17,14 @@ const APP_SHELL = [
   "./assets/icons/apple-touch-icon.png"
 ].map(path => new URL(path, scopeUrl).href);
 
+async function cacheOptionalDeckContent(cache, manifestUrl) {
+  const contentUrl = new URL("./content.json", manifestUrl).href;
+  const response = await fetch(contentUrl, { cache: "no-store" });
+  if (response.status === 404) return;
+  if (!response.ok) throw new Error("Deck content could not be cached");
+  await cache.put(contentUrl, response.clone());
+}
+
 async function cacheRegisteredDecks(cache, includeCardFaces = true) {
   const indexResponse = await fetch(deckIndexUrl, { cache: "no-store" });
   if (!indexResponse.ok) throw new Error("Deck index could not be cached");
@@ -29,6 +37,7 @@ async function cacheRegisteredDecks(cache, includeCardFaces = true) {
     if (!manifestResponse.ok) throw new Error(`${entry.id}: deck manifest could not be cached`);
     await cache.put(manifestUrl, manifestResponse.clone());
     const deck = await manifestResponse.json();
+    await cacheOptionalDeckContent(cache, manifestUrl);
     const assets = [
       new URL(deck.backImage, manifestUrl).href,
       ...(includeCardFaces ? Object.values(deck.cards).map(card => new URL(card.image, manifestUrl).href) : [])

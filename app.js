@@ -54,6 +54,13 @@
     return response.json();
   }
 
+  async function fetchOptionalJson(url) {
+    const response = await fetch(url, { cache: "no-cache" });
+    if (response.status === 404) return null;
+    if (!response.ok) throw new Error(`${url} を読み込めませんでした`);
+    return response.json();
+  }
+
   async function loadContent() {
     const deckIndexUrl = new URL("./decks/index.json", window.location.href);
     const [cards, deckIndex] = await Promise.all([
@@ -65,13 +72,25 @@
       const manifestUrl = new URL(entry.manifest, deckIndexUrl);
       const deck = await fetchJson(manifestUrl);
       if (deck.id !== entry.id) throw new Error(`${entry.id} のDeck IDが一致しません`);
+      const contentUrl = new URL("./content.json", manifestUrl);
+      const contentOverride = await fetchOptionalJson(contentUrl);
+      const overrideCards = contentOverride?.cards || {};
       return {
         ...deck,
+        contentVersion: contentOverride?.contentVersion || deck.contentVersion,
         backImage: new URL(deck.backImage, manifestUrl).href,
-        cards: Object.fromEntries(Object.entries(deck.cards).map(([cardId, card]) => [
-          cardId,
-          { ...card, image: new URL(card.image, manifestUrl).href }
-        ]))
+        cards: Object.fromEntries(Object.entries(deck.cards).map(([cardId, card]) => {
+          const override = overrideCards[cardId] || {};
+          return [
+            cardId,
+            {
+              ...card,
+              image: new URL(card.image, manifestUrl).href,
+              upright: { ...card.upright, ...override.upright },
+              reversed: { ...card.reversed, ...override.reversed }
+            }
+          ];
+        }))
       };
     }));
     if (!cards.length || !decks.length) throw new Error("利用できるカードまたはデッキがありません");
@@ -225,11 +244,13 @@
     if (!rwsContent || !deckContent) {
       throw new Error(`${card?.cardId || "unknown"} ${orientation} の表示データが不完全です`);
     }
-    return {
-      keywords: rwsContent.keywords,
-      meaning: rwsContent.meaning,
-      question: deckContent.question
-    };
+    const keywords = deckContent.keywords ?? rwsContent.keywords;
+    const meaning = deckContent.meaning ?? rwsContent.meaning;
+    const question = deckContent.question;
+    if (!Array.isArray(keywords) || !keywords.length || !meaning || !question) {
+      throw new Error(`${card.cardId} ${orientation} の表示データが不完全です`);
+    }
+    return { keywords, meaning, question };
   }
 
   function fitQuestionLine() {
