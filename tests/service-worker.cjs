@@ -45,7 +45,7 @@ const sandbox = {
   fetch: localFetch,
   caches: {
     open: async () => cache,
-    keys: async () => ["one-card-matte-ui-v12", "one-card-content-v13"],
+    keys: async () => ["one-card-matte-ui-v12", "one-card-content-v17"],
     delete: async name => {
       deletedCaches.push(name);
       return true;
@@ -83,6 +83,7 @@ async function dispatchWaitable(type, data) {
   const expectedDeckAssets = [
     `${SCOPE}decks/index.json`,
     `${SCOPE}decks/deck-01/deck.json`,
+    `${SCOPE}decks/deck-01/content.json`,
     `${SCOPE}decks/deck-01/back.png`,
     ...Object.keys(JSON.parse(fs.readFileSync(path.join(ROOT, "decks/deck-01/deck.json"), "utf8")).cards)
       .map(cardId => `${SCOPE}decks/deck-01/cards/${cardId}.png`)
@@ -92,12 +93,12 @@ async function dispatchWaitable(type, data) {
   if (![...stored.keys()].every(url => url.startsWith(SCOPE))) {
     throw new Error("A cache URL escaped the GitHub Pages project scope");
   }
-  if (!deletedCaches.includes("one-card-matte-ui-v12")) {
-    throw new Error("The previous cache was not removed before warming the moved deck assets");
+  if (!deletedCaches.includes("one-card-content-v17")) {
+    throw new Error("The previous content cache was not removed before warming the updated deck content");
   }
 
   await dispatchWaitable("message", { type: "CACHE_DECKS" });
-  console.log(`Service Worker cached ${stored.size} project-scoped resources, including Deck 01 manifest, back, and 78 faces.`);
+  console.log(`Service Worker cached ${stored.size} project-scoped resources, including Deck 01 content overrides and 78 faces.`);
 })().catch(error => {
   console.error(error);
   process.exitCode = 1;
