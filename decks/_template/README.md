@@ -8,8 +8,18 @@
 4. `decks/index.json` の `decks` に1件登録します。
 5. リポジトリのルートで `node tools/validate-deck.cjs deck-02` を実行します。
 
-`deck.json` にはRWS 78 IDがすべて記入済みです。各カードの`question`は
-正位置／逆位置とも必須です。Deck 01から自動補完されません。
-`keywords`と`meaning`は`data/rws-cards.json`のRWS共通データを使うため、デッキ側には記入しません。
+`deck.json` にはRWS 78 IDがすべて記入済みです。各カードの正位置／逆位置には、デッキ固有の `question` に加えて `keywords` と `meaning` を持たせられます。新しく作るデッキでは3項目すべてをデッキ固有で用意することを推奨します。
+
+```json
+"upright": {
+  "keywords": ["...", "..."],
+  "meaning": "...",
+  "question": "..."
+}
+```
+
+移行中の既存デッキでは、`keywords` / `meaning` がまだないカードに限り `data/rws-cards.json` の旧共通文章へfallbackします。このfallbackは全78枚のデッキ固有文章が完成するまでの一時互換です。
+
+大量の既存 `deck.json` を安全に段階移行する場合は、同じフォルダに `content.json` を置いてカード文章だけを上書きできます。Deck 01はこの方法でMajor Arcanaから移行しています。`content.json` の各カードには正逆とも `keywords` / `meaning` / `question` をすべて記入してください。
 
 `cards/` には説明用のこのファイル以外、雛形画像を置いていません。
