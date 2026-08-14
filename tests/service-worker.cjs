@@ -45,7 +45,7 @@ const sandbox = {
   fetch: localFetch,
   caches: {
     open: async () => cache,
-    keys: async () => ["one-card-matte-ui-v12", "one-card-content-v17"],
+    keys: async () => ["one-card-matte-ui-v12", "one-card-content-v18"],
     delete: async name => {
       deletedCaches.push(name);
       return true;
@@ -93,12 +93,12 @@ async function dispatchWaitable(type, data) {
   if (![...stored.keys()].every(url => url.startsWith(SCOPE))) {
     throw new Error("A cache URL escaped the GitHub Pages project scope");
   }
-  if (!deletedCaches.includes("one-card-content-v17")) {
+  if (!deletedCaches.includes("one-card-content-v18")) {
     throw new Error("The previous content cache was not removed before warming the updated deck content");
   }
 
   await dispatchWaitable("message", { type: "CACHE_DECKS" });
-  console.log(`Service Worker cached ${stored.size} project-scoped resources, including Deck 01 content overrides and 78 faces.`);
+  console.log(`Service Worker cached ${stored.size} project-scoped resources, including complete Deck 01 content overrides and 78 faces.`);
 })().catch(error => {
   console.error(error);
   process.exitCode = 1;
