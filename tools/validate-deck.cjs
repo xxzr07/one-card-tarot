@@ -110,9 +110,11 @@ function readContentOverride(deckDirectory, deckId, expectedIds) {
     for (const orientation of ORIENTATIONS) {
       const content = card?.[orientation];
       if (!content) fail(`${deckId}/content.json/${cardId}/${orientation}: データがありません`);
-      if (!isFilledString(content.question)) fail(`${deckId}/content.json/${cardId}/${orientation}: questionが空です`);
       if (!isFilledStringArray(content.keywords)) fail(`${deckId}/content.json/${cardId}/${orientation}: keywordsが不完全です`);
       if (!isFilledString(content.meaning)) fail(`${deckId}/content.json/${cardId}/${orientation}: meaningが空です`);
+      if (Object.prototype.hasOwnProperty.call(content, "question") && !isFilledString(content.question)) {
+        fail(`${deckId}/content.json/${cardId}/${orientation}: questionを指定する場合は空にできません`);
+      }
     }
   }
   return override;
@@ -174,6 +176,8 @@ function validateDeck(deckId, expectedIds, index) {
       const overrideContent = overrideCards[cardId]?.[orientation];
       const resolved = { ...baseContent, ...overrideContent };
       if (!isFilledString(resolved.question)) fail(`${deckId}/${cardId}/${orientation}: questionが空です`);
+      if (!isFilledStringArray(resolved.keywords)) fail(`${deckId}/${cardId}/${orientation}: resolved keywordsが不完全です`);
+      if (!isFilledString(resolved.meaning)) fail(`${deckId}/${cardId}/${orientation}: resolved meaningが空です`);
     }
     if (card.upright.question === card.reversed.question && !overrideCards[cardId]) {
       fail(`${deckId}/${cardId}: 正位置と逆位置のquestionが完全一致しています`);
