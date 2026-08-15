@@ -8,18 +8,25 @@
 4. `decks/index.json` の `decks` に1件登録します。
 5. リポジトリのルートで `node tools/validate-deck.cjs deck-02` を実行します。
 
-`deck.json` にはRWS 78 IDがすべて記入済みです。各カードの正位置／逆位置には、デッキ固有の `question` に加えて `keywords` と `meaning` を持たせられます。新しく作るデッキでは3項目すべてをデッキ固有で用意することを推奨します。
+`deck.json` にはRWS 78 IDがすべて記入済みです。各カードの正位置／逆位置にはデッキ固有の `question` を持たせます。`keywords` と `meaning` は `deck.json` に直接置くことも、同じDeckフォルダの `content.json` から上書きすることもできます。
 
 ```json
 "upright": {
-  "keywords": ["...", "..."],
-  "meaning": "...",
   "question": "..."
 }
 ```
 
-移行中の既存デッキでは、`keywords` / `meaning` がまだないカードに限り `data/rws-cards.json` の旧共通文章へfallbackします。このfallbackは全78枚のデッキ固有文章が完成するまでの一時互換です。
+`content.json` を使用する場合は、ユーザー向け表示文章をカード単位で分離できます。各カードの正位置／逆位置には `keywords` と `meaning` を記入してください。`question` は `deck.json` の値をそのまま使用でき、特別に上書きしたい場合だけ `content.json` に指定できます。
 
-大量の既存 `deck.json` を安全に段階移行する場合は、同じフォルダに `content.json` を置いてカード文章だけを上書きできます。Deck 01はこの方法でMajor Arcanaから移行しています。`content.json` の各カードには正逆とも `keywords` / `meaning` / `question` をすべて記入してください。
+```json
+"upright": {
+  "keywords": ["...", "..."],
+  "meaning": "..."
+}
+```
+
+移行中または未完成のデッキでは、デッキ固有の `keywords` / `meaning` がないカードに限り `data/rws-cards.json` の旧共通文章へfallbackします。このfallbackは互換用であり、新しく完成させるデッキでは78枚すべてにデッキ固有文章を用意することを推奨します。
+
+Deck 01は `deck.json` にQUESTIONとVisual Motifを置き、`content.json` に78枚すべてのデッキ固有 `keywords` / `meaning` を置く構成です。
 
 `cards/` には説明用のこのファイル以外、雛形画像を置いていません。
