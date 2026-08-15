@@ -62,7 +62,7 @@ node tools/validate-deck.cjs deck-02
 
 新しいDeckの文章はCARD COREの `themes` をsemantic guardrailとして参照しつつ、そのDeck独自の焦点・語り口で制作します。共有表示文章によるfallbackはないため、有効化する前に78枚すべての表示コンテンツを完成させます。
 
-HTML、CSS、アプリ本体、Service WorkerへDeck 02のパスを追記する必要はありません。詳しい制作・QA仕様は`NEW_DECK_TEMPLATE.md`と`decks/_template/README.md`を参照してください。
+HTML、CSS、アプリ本体、Service WorkerへDeck 02のパスを追記する必要はありません。現行のデータ契約は`decks/_template/README.md`を参照してください。`NEW_DECK_TEMPLATE.md`はDeck 02の制作方針を決める際にCARD CORE方式へ全面更新する予定です。
 
 ## カード画像と確認用一覧の再生成
 
