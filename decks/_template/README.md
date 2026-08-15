@@ -2,13 +2,25 @@
 
 このフォルダを `decks/deck-02/` のような新しいDeck IDへコピーして使用します。
 
-1. `deck.json` の `id`、名前、説明、代表カード、文章を編集します。
-2. `cards/` に、`cardId.png` という名前で612×1206pxのPNGを78枚置きます。
-3. この階層に612×1206pxの共通裏面を `back.png` として置きます。
-4. `decks/index.json` の `decks` に1件登録します。
-5. リポジトリのルートで `node tools/validate-deck.cjs deck-02` を実行します。
+1. `deck.json` の `id`、名前、説明、代表カード、QUESTION、Visual Motifを編集します。
+2. `content.json` に78枚すべての正位置／逆位置 `keywords` と `meaning` を用意します。
+3. `cards/` に、`cardId.png` という名前で612×1206pxのPNGを78枚置きます。
+4. この階層に612×1206pxの共通裏面を `back.png` として置きます。
+5. `decks/index.json` の `decks` に1件登録します。
+6. リポジトリのルートで `node tools/validate-deck.cjs deck-02` を実行します。
 
-`deck.json` にはRWS 78 IDがすべて記入済みです。各カードの正位置／逆位置にはデッキ固有の `question` を持たせます。`keywords` と `meaning` は `deck.json` に直接置くことも、同じDeckフォルダの `content.json` から上書きすることもできます。
+## CARD COREとDeckの役割
+
+`data/rws-cards.json` は78枚共通のCARD COREです。カードID、番号、英名、suit、rankと、正位置／逆位置それぞれの中立的な `themes` だけを持ちます。
+
+CARD COREの `themes` は「そのカードをどこまでの意味として解釈してよいか」を固定するためのsemantic guardrailです。ユーザーへ直接表示する文章ではありません。CARD COREに `keywords` や `meaning` を追加しないでください。
+
+ユーザー向けの表示内容は各Deckが所有します。
+
+- `deck.json`: 画像、Visual Motif、QUESTION
+- `content.json`: KEYWORDS、MEANING
+
+`deck.json` の各カードには正位置／逆位置の `question` を記入します。
 
 ```json
 "upright": {
@@ -16,7 +28,7 @@
 }
 ```
 
-`content.json` を使用する場合は、ユーザー向け表示文章をカード単位で分離できます。各カードの正位置／逆位置には `keywords` と `meaning` を記入してください。`question` は `deck.json` の値をそのまま使用でき、特別に上書きしたい場合だけ `content.json` に指定できます。
+`content.json` には78枚すべてについて、正位置／逆位置の `keywords` と `meaning` が必須です。
 
 ```json
 "upright": {
@@ -25,8 +37,10 @@
 }
 ```
 
-移行中または未完成のデッキでは、デッキ固有の `keywords` / `meaning` がないカードに限り `data/rws-cards.json` の旧共通文章へfallbackします。このfallbackは互換用であり、新しく完成させるデッキでは78枚すべてにデッキ固有文章を用意することを推奨します。
+`question` は通常 `deck.json` の値を使用します。特殊な理由でDeck内の表示文章と一緒に管理したい場合は `content.json` から上書きできますが、同じ文を二重管理しないでください。
 
-Deck 01は `deck.json` にQUESTIONとVisual Motifを置き、`content.json` に78枚すべてのデッキ固有 `keywords` / `meaning` を置く構成です。
+共有表示文章へのfallbackはありません。新しいDeckを有効化する前に、78枚すべてのDeck固有 `keywords` / `meaning` とQUESTIONを完成させてください。
+
+Deck 01は `deck.json` にQUESTIONとVisual Motif、`content.json` に78枚すべてのDeck固有 `keywords` / `meaning` を置く構成です。
 
 `cards/` には説明用のこのファイル以外、雛形画像を置いていません。
