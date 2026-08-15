@@ -13,13 +13,17 @@ Deck 01の大アルカナ22枚と小アルカナ56枚、合計78枚を収録し�
 - 履歴カードの再表示
 - JSON形式のエクスポート／インポート
 - PWA、オフラインキャッシュ、iPhoneのsafe area対応
-- RWS共通の識別・キーワード・意味と、デッキ固有コンテンツの分離
+- 78枚共通のCARD COREと、デッキ固有の表示コンテンツの分離
 - 新規ドローは、表示した文章をversion 2 snapshotとして履歴へ保存
 - 既存のversion 1履歴も削除・変換せず表示
 
 ## 現在のカード構成
 
-抽選対象はDeck 01の全78枚です。正位置／逆位置のキーワードと意味は`data/rws-cards.json`で全デッキ共通、画像、視覚モチーフ、TODAY'S QUESTIONはDeck 01の`deck.json`に収録しています。同じ日は引き直せません。
+抽選対象はDeck 01の全78枚です。
+
+`data/rws-cards.json` はCARD COREとして、カードID、番号、英語名、スート、ランクと、正位置／逆位置それぞれの中立的な `themes` だけを持ちます。ここにはユーザー表示用のキーワードや意味文を置きません。
+
+Deck 01では、画像・Visual Motif・TODAY'S QUESTIONを `decks/deck-01/deck.json`、正逆のKEYWORDSとMEANINGを `decks/deck-01/content.json` に保存しています。表示文章はすべてDeck固有で、CARD COREからの表示fallbackはありません。同じ日は引き直せません。
 
 裏面画像は各カードではなくデッキ定義の`backImage`に設定します。同じデッキ内の全カードで共通となり、今後別デッキを追加する場合は、そのデッキ固有の裏面画像を指定できます。
 
@@ -47,15 +51,18 @@ GitHubへこのフォルダの中身をそのまま置けば動作する構成�
 ## 新しいデッキを追加する
 
 1. `decks/_template/` を `decks/deck-02/` のような名前でコピーします。
-2. `deck.json`へメタデータ、視覚モチーフ、正逆の問いを記入し、`cards/`へ78枚、同じ階層へ`back.png`を置きます。キーワードと意味は新規制作しません。
-3. `decks/index.json`へ1件登録します。
-4. 次のvalidatorを実行します。
+2. `deck.json`へメタデータ、Visual Motif、正逆のQUESTIONを記入し、`cards/`へ78枚、同じ階層へ`back.png`を置きます。
+3. `content.json`へ78枚すべての正逆KEYWORDSとMEANINGを記入します。
+4. `decks/index.json`へ1件登録します。
+5. 次のvalidatorを実行します。
 
 ```bash
 node tools/validate-deck.cjs deck-02
 ```
 
-HTML、CSS、アプリ本体、Service WorkerへDeck 02のパスを追記する必要はありません。詳しい制作・QA仕様は`NEW_DECK_TEMPLATE.md`を参照してください。
+新しいDeckの文章はCARD COREの `themes` をsemantic guardrailとして参照しつつ、そのDeck独自の焦点・語り口で制作します。共有表示文章によるfallbackはないため、有効化する前に78枚すべての表示コンテンツを完成させます。
+
+HTML、CSS、アプリ本体、Service WorkerへDeck 02のパスを追記する必要はありません。現行のデータ契約は`decks/_template/README.md`を参照してください。`NEW_DECK_TEMPLATE.md`はDeck 02の制作方針を決める際にCARD CORE方式へ全面更新する予定です。
 
 ## カード画像と確認用一覧の再生成
 
