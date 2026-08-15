@@ -4,7 +4,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const ROOT = path.resolve(__dirname, "..");
-const RWS_PATH = path.join(ROOT, "data", "rws-cards.json");
+const CORE_PATH = path.join(ROOT, "data", "rws-cards.json");
 const INDEX_PATH = path.join(ROOT, "decks", "index.json");
 const ORIENTATIONS = ["upright", "reversed"];
 
@@ -52,61 +52,57 @@ function imageInfo(file, label) {
   };
 }
 
-function validateRwsCards(cards) {
-  if (!Array.isArray(cards) || cards.length !== 78) fail("rws-cards.json: 78件ちょうど必要です");
-  const ids = cards.map(card => card.cardId);
-  if (new Set(ids).size !== 78) fail("rws-cards.json: cardIdが重複しています");
+function expectedCardIds() {
   const majorIds = Array.from({ length: 22 }, (_, index) => `major-${String(index).padStart(2, "0")}`);
   const ranks = ["ace", "02", "03", "04", "05", "06", "07", "08", "09", "10", "page", "knight", "queen", "king"];
   const minorIds = ["wands", "cups", "swords", "pentacles"].flatMap(suit => ranks.map(rank => `${suit}-${rank}`));
-  const expectedIds = [...majorIds, ...minorIds];
+  return [...majorIds, ...minorIds];
+}
+
+function validateCardCore(cards) {
+  if (!Array.isArray(cards) || cards.length !== 78) fail("rws-cards.json: CARD COREは78件ちょうど必要です");
+  const ids = cards.map(card => card.cardId);
+  if (new Set(ids).size !== 78) fail("rws-cards.json: cardIdが重複しています");
+  const expectedIds = expectedCardIds();
   if (ids.join(",") !== expectedIds.join(",")) fail("rws-cards.json: 78 IDの順序または内容が標準一覧と一致しません");
 
   for (const card of cards) {
     for (const field of ["cardId", "number", "nameEn", "suit", "rank"]) {
-      if (!isFilledString(card[field])) fail(`${card.cardId || "unknown"}: RWS ${field} が空です`);
+      if (!isFilledString(card[field])) fail(`${card.cardId || "unknown"}: CARD CORE ${field} が空です`);
     }
-    if (!isFilledStringArray(card.rwsSymbols)) fail(`${card.cardId}: rwsSymbolsが不完全です`);
     for (const orientation of ORIENTATIONS) {
-      const content = card[orientation];
-      if (!content) fail(`${card.cardId}/${orientation}: RWS fallbackデータがありません`);
-      if (!isFilledStringArray(content.keywords)) fail(`${card.cardId}/${orientation}: RWS fallback keywordsが不完全です`);
-      if (!isFilledString(content.meaning)) fail(`${card.cardId}/${orientation}: RWS fallback meaningが空です`);
+      const core = card[orientation];
+      if (!core) fail(`${card.cardId}/${orientation}: CARD COREデータがありません`);
+      if (!isFilledStringArray(core.themes)) fail(`${card.cardId}/${orientation}: themesが不完全です`);
+      if (Object.prototype.hasOwnProperty.call(core, "keywords") || Object.prototype.hasOwnProperty.call(core, "meaning")) {
+        fail(`${card.cardId}/${orientation}: CARD COREにユーザー表示用keywords/meaningを置かないでください`);
+      }
     }
   }
   return expectedIds;
 }
 
-function validateOptionalDisplayContent(content, label) {
-  const hasKeywords = Object.prototype.hasOwnProperty.call(content, "keywords");
-  const hasMeaning = Object.prototype.hasOwnProperty.call(content, "meaning");
-  if (hasKeywords !== hasMeaning) {
-    fail(`${label}: keywordsとmeaningは同時に指定してください`);
-  }
-  if (hasKeywords && !isFilledStringArray(content.keywords)) {
-    fail(`${label}: keywordsが不完全です`);
-  }
-  if (hasMeaning && !isFilledString(content.meaning)) {
-    fail(`${label}: meaningが空です`);
-  }
-}
-
-function readContentOverride(deckDirectory, deckId, expectedIds) {
+function readCompleteDeckContent(deckDirectory, deckId, expectedIds) {
   const file = path.join(deckDirectory, "content.json");
-  if (!fs.existsSync(file)) return null;
-  const override = readJson(file);
-  if (override.schemaVersion !== 1) fail(`${deckId}/content.json: schemaVersionは1にしてください`);
-  if (!/^\d+\.\d+\.\d+$/.test(override.contentVersion || "")) {
+  if (!fs.existsSync(file)) fail(`${deckId}: content.jsonが必要です。表示用keywords/meaningはDeckが78枚すべて所有してください`);
+  const contentFile = readJson(file);
+  if (contentFile.schemaVersion !== 1) fail(`${deckId}/content.json: schemaVersionは1にしてください`);
+  if (!/^\d+\.\d+\.\d+$/.test(contentFile.contentVersion || "")) {
     fail(`${deckId}/content.json: contentVersionは1.0.0形式にしてください`);
   }
-  if (!override.cards || typeof override.cards !== "object" || Array.isArray(override.cards)) {
+  if (!contentFile.cards || typeof contentFile.cards !== "object" || Array.isArray(contentFile.cards)) {
     fail(`${deckId}/content.json: cardsがありません`);
   }
-  const ids = Object.keys(override.cards);
+
+  const ids = Object.keys(contentFile.cards);
+  const missing = expectedIds.filter(cardId => !ids.includes(cardId));
   const extra = ids.filter(cardId => !expectedIds.includes(cardId));
-  if (extra.length) fail(`${deckId}/content.json: 不明なcardIdがあります [${extra}]`);
-  for (const cardId of ids) {
-    const card = override.cards[cardId];
+  if (missing.length || extra.length || ids.length !== 78) {
+    fail(`${deckId}/content.json: 78枚すべてのDeck固有文章が必要です missing=[${missing}] extra=[${extra}]`);
+  }
+
+  for (const cardId of expectedIds) {
+    const card = contentFile.cards[cardId];
     for (const orientation of ORIENTATIONS) {
       const content = card?.[orientation];
       if (!content) fail(`${deckId}/content.json/${cardId}/${orientation}: データがありません`);
@@ -117,7 +113,7 @@ function readContentOverride(deckDirectory, deckId, expectedIds) {
       }
     }
   }
-  return override;
+  return contentFile;
 }
 
 function validateDeck(deckId, expectedIds, index) {
@@ -136,19 +132,20 @@ function validateDeck(deckId, expectedIds, index) {
   for (const field of ["name", "subtitle", "description", "previewCardId", "backImage"]) {
     if (!isFilledString(deck[field])) fail(`${deckId}: ${field}が空です`);
   }
-  if (!expectedIds.includes(deck.previewCardId)) fail(`${deckId}: previewCardIdがRWS 78 IDに含まれません`);
+  if (!expectedIds.includes(deck.previewCardId)) fail(`${deckId}: previewCardIdがCARD CORE 78 IDに含まれません`);
   if (!deck.imageSpec || !Number.isInteger(deck.imageSpec.width) || !Number.isInteger(deck.imageSpec.height) || deck.imageSpec.format !== "png") {
     fail(`${deckId}: imageSpecはwidth / height / format: pngを指定してください`);
   }
 
   const deckIds = Object.keys(deck.cards || {});
-  if (deckIds.length !== 78) fail(`${deckId}: cardsは78件ちょうど必要です（現在${deckIds.length}件）`);
-  const missing = expectedIds.filter(cardId => !deckIds.includes(cardId));
-  const extra = deckIds.filter(cardId => !expectedIds.includes(cardId));
-  if (missing.length || extra.length) fail(`${deckId}: RWS IDと一致しません missing=[${missing}] extra=[${extra}]`);
+  const missingDeckIds = expectedIds.filter(cardId => !deckIds.includes(cardId));
+  const extraDeckIds = deckIds.filter(cardId => !expectedIds.includes(cardId));
+  if (deckIds.length !== 78 || missingDeckIds.length || extraDeckIds.length) {
+    fail(`${deckId}: cardsはCARD CORE 78 IDと完全一致させてください missing=[${missingDeckIds}] extra=[${extraDeckIds}]`);
+  }
 
-  const contentOverride = readContentOverride(deckDirectory, deckId, expectedIds);
-  const overrideCards = contentOverride?.cards || {};
+  const contentFile = readCompleteDeckContent(deckDirectory, deckId, expectedIds);
+  const contentCards = contentFile.cards;
 
   const backPath = resolveInsideDeck(deckDirectory, deck.backImage, `${deckId}/backImage`);
   const back = imageInfo(backPath, `${deckId}/backImage`);
@@ -171,16 +168,14 @@ function validateDeck(deckId, expectedIds, index) {
 
     for (const orientation of ORIENTATIONS) {
       const baseContent = card[orientation];
-      if (!baseContent) fail(`${deckId}/${cardId}/${orientation}: データがありません`);
-      validateOptionalDisplayContent(baseContent, `${deckId}/${cardId}/${orientation}`);
-      const overrideContent = overrideCards[cardId]?.[orientation];
-      const resolved = { ...baseContent, ...overrideContent };
-      if (!isFilledString(resolved.question)) fail(`${deckId}/${cardId}/${orientation}: questionが空です`);
-      if (!isFilledStringArray(resolved.keywords)) fail(`${deckId}/${cardId}/${orientation}: resolved keywordsが不完全です`);
-      if (!isFilledString(resolved.meaning)) fail(`${deckId}/${cardId}/${orientation}: resolved meaningが空です`);
-    }
-    if (card.upright.question === card.reversed.question && !overrideCards[cardId]) {
-      fail(`${deckId}/${cardId}: 正位置と逆位置のquestionが完全一致しています`);
+      if (!baseContent || !isFilledString(baseContent.question)) {
+        fail(`${deckId}/${cardId}/${orientation}: deck.jsonのquestionが空です`);
+      }
+      const displayContent = contentCards[cardId][orientation];
+      const question = displayContent.question || baseContent.question;
+      if (!isFilledStringArray(displayContent.keywords)) fail(`${deckId}/${cardId}/${orientation}: Deck固有keywordsが不完全です`);
+      if (!isFilledString(displayContent.meaning)) fail(`${deckId}/${cardId}/${orientation}: Deck固有meaningが空です`);
+      if (!isFilledString(question)) fail(`${deckId}/${cardId}/${orientation}: questionが空です`);
     }
   }
 
@@ -190,12 +185,11 @@ function validateDeck(deckId, expectedIds, index) {
   if (pngFiles.length !== 78) fail(`${deckId}: cards/内のPNGは78枚必要です（現在${pngFiles.length}枚）`);
   if (resolvedImages.size !== 78) fail(`${deckId}: 78枚すべてが一意に参照されていません`);
 
-  const migratedCount = Object.keys(overrideCards).length;
-  console.log(`✓ ${deckId}: 78 cards + back.png (${contentOverride?.contentVersion || deck.contentVersion}; ${migratedCount} deck-specific content overrides)`);
+  console.log(`✓ ${deckId}: 78 cards + back.png (${contentFile.contentVersion}; complete deck-owned content)`);
 }
 
-const rwsCards = readJson(RWS_PATH);
-const expectedIds = validateRwsCards(rwsCards);
+const cardCore = readJson(CORE_PATH);
+const expectedIds = validateCardCore(cardCore);
 const index = readJson(INDEX_PATH);
 if (!Array.isArray(index.decks) || !index.decks.length) fail("decks/index.json: decksが空です");
 const registeredIds = index.decks.map(entry => entry.id);
@@ -207,4 +201,4 @@ const targets = requestedDeckId
   ? [requestedDeckId]
   : index.decks.filter(entry => entry.enabled !== false).map(entry => entry.id);
 for (const deckId of targets) validateDeck(deckId, expectedIds, index);
-console.log(`Validated ${targets.length} deck(s) against the shared 78-card RWS registry with deck-specific content support.`);
+console.log(`Validated ${targets.length} deck(s) against the 78-card core with complete deck-owned display content.`);
