@@ -1,46 +1,153 @@
-# 新規デッキ雛形
+# 新規Deckパッケージ雛形
 
-このフォルダを `decks/deck-02/` のような新しいDeck IDへコピーして使用します。
+このフォルダは、新しいDeckを追加するときの実ファイル雛形です。
 
-1. `deck.json` の `id`、名前、説明、代表カード、QUESTION、Visual Motifを編集します。
-2. `content.json` に78枚すべての正位置／逆位置 `keywords` と `meaning` を用意します。
-3. `cards/` に、`cardId.png` という名前で612×1206pxのPNGを78枚置きます。
-4. この階層に612×1206pxの共通裏面を `back.png` として置きます。
-5. `decks/index.json` の `decks` に1件登録します。
-6. リポジトリのルートで `node tools/validate-deck.cjs deck-02` を実行します。
+制作方針・文章設計・QAの詳細は、リポジトリ直下の `NEW_DECK_TEMPLATE.md` を先に確認してください。
 
-## CARD COREとDeckの役割
+## 含まれるもの
 
-`data/rws-cards.json` は78枚共通のCARD COREです。カードID、番号、英名、suit、rankと、正位置／逆位置それぞれの中立的な `themes` だけを持ちます。
+```text
+_template/
+├─ deck.json       # 78枚の画像参照 / Visual Motif / QUESTION
+├─ content.json    # 78枚のKEYWORDS / MEANING
+├─ cards/          # 612×1206px PNGを78枚置く
+└─ README.md
+```
 
-CARD COREの `themes` は「そのカードをどこまでの意味として解釈してよいか」を固定するためのsemantic guardrailです。ユーザーへ直接表示する文章ではありません。CARD COREに `keywords` や `meaning` を追加しないでください。
+`back.png` は新Deck固有のものを制作して、この階層へ追加します。
 
-ユーザー向けの表示内容は各Deckが所有します。
+## CARD COREとの関係
 
-- `deck.json`: 画像、Visual Motif、QUESTION
-- `content.json`: KEYWORDS、MEANING
+`data/rws-cards.json` は78枚共通のCARD COREです。
 
-`deck.json` の各カードには正位置／逆位置の `question` を記入します。
+CARD COREには、カードID・番号・英名・suit・rankと、正逆それぞれの中立的な `themes` だけがあります。
+
+`themes` はsemantic guardrailであり、ユーザーへ直接表示する文章ではありません。
+
+新Deckでは、その意味範囲を守りながら独自の表示内容を制作します。
+
+```text
+CARD CORE
+= そのカードとして解釈できる範囲
+
+Deck
+= その範囲のどこを、どう表現するか
+```
+
+## `deck.json`
+
+78 IDがすでに入っています。
+
+各カードについて埋めるもの:
+
+- `visualMotif`
+- `upright.question`
+- `reversed.question`
+
+画像パスは `./cards/<cardId>.png` の形で設定済みです。
+
+例:
 
 ```json
-"upright": {
-  "question": "..."
+"major-00": {
+  "image": "./cards/major-00.png",
+  "visualMotif": "...",
+  "upright": {
+    "question": "..."
+  },
+  "reversed": {
+    "question": "..."
+  }
 }
 ```
 
-`content.json` には78枚すべてについて、正位置／逆位置の `keywords` と `meaning` が必須です。
+Deck全体では次も変更します。
+
+- `id`
+- `contentVersion`
+- `name`
+- `subtitle`
+- `description`
+- `previewCardId`
+
+## `content.json`
+
+78 IDがすでに入っています。
+
+各カードの正位置／逆位置について、空の `keywords` と `meaning` をDeck固有文章で埋めます。
+
+例:
 
 ```json
-"upright": {
-  "keywords": ["...", "..."],
-  "meaning": "..."
+"major-00": {
+  "upright": {
+    "keywords": ["...", "...", "..."],
+    "meaning": "..."
+  },
+  "reversed": {
+    "keywords": ["...", "...", "..."],
+    "meaning": "..."
+  }
 }
 ```
 
-`question` は通常 `deck.json` の値を使用します。特殊な理由でDeck内の表示文章と一緒に管理したい場合は `content.json` から上書きできますが、同じ文を二重管理しないでください。
+共有表示文章へのfallbackはありません。
 
-共有表示文章へのfallbackはありません。新しいDeckを有効化する前に、78枚すべてのDeck固有 `keywords` / `meaning` とQUESTIONを完成させてください。
+そのため、Deckを `enabled: true` で登録する前に78枚すべてを完成させます。
 
-Deck 01は `deck.json` にQUESTIONとVisual Motif、`content.json` に78枚すべてのDeck固有 `keywords` / `meaning` を置く構成です。
+QUESTIONは通常 `deck.json` だけで管理します。同じQUESTIONを `content.json` に重複保存しません。
 
-`cards/` には説明用のこのファイル以外、雛形画像を置いていません。
+## 画像
+
+`cards/` には次の仕様で78枚置きます。
+
+- 612×1206px
+- PNG
+- ファイル名 = `cardId.png`
+
+例:
+
+```text
+major-00.png
+major-21.png
+wands-ace.png
+cups-05.png
+swords-10.png
+pentacles-king.png
+```
+
+裏面は同じ612×1206px PNGで `back.png` とします。
+
+## 新Deck作成手順
+
+1. `_template/` を `decks/deck-02/` のようにコピーする。
+2. `deck.json` のDeckメタデータを変更する。
+3. CARD COREを参照しながら代表カードを試作する。
+4. `deck.json` のVisual Motif / QUESTIONを埋める。
+5. `content.json` のKEYWORDS / MEANINGを埋める。
+6. `cards/`へ78枚を置く。
+7. `back.png`を置く。
+8. `decks/index.json`へ登録する。
+9. validatorを実行する。
+
+```bash
+node tools/validate-deck.cjs deck-02
+```
+
+新Deck追加だけで通常は `app.js`、`index.html`、`styles.css`、`service-worker.js` を変更しません。
+
+## 完成条件
+
+validatorが次を満たす必要があります。
+
+- CARD COREと同じ78 ID
+- Visual Motif 78件
+- QUESTION 156件
+- KEYWORDS 156件
+- MEANING 156件
+- 表面画像78枚
+- 裏面1枚
+- 画像寸法・形式一致
+- ファイル名とcardId一致
+
+Deck 01の文章・画像・QUESTIONを新Deckのfallbackとして使用しないでください。
