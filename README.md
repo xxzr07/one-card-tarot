@@ -50,6 +50,8 @@ GitHubへこのフォルダの中身をそのまま置けば動作する構成�
 
 ## 新しいデッキを追加する
 
+新規Deckの企画・文章・Visual・試作・量産・QAは `NEW_DECK_TEMPLATE.md` を制作仕様として使用します。実ファイルは `decks/_template/` をコピーして開始します。
+
 1. `decks/_template/` を `decks/deck-02/` のような名前でコピーします。
 2. `deck.json`へメタデータ、Visual Motif、正逆のQUESTIONを記入し、`cards/`へ78枚、同じ階層へ`back.png`を置きます。
 3. `content.json`へ78枚すべての正逆KEYWORDSとMEANINGを記入します。
@@ -62,7 +64,7 @@ node tools/validate-deck.cjs deck-02
 
 新しいDeckの文章はCARD COREの `themes` をsemantic guardrailとして参照しつつ、そのDeck独自の焦点・語り口で制作します。共有表示文章によるfallbackはないため、有効化する前に78枚すべての表示コンテンツを完成させます。
 
-HTML、CSS、アプリ本体、Service WorkerへDeck 02のパスを追記する必要はありません。現行のデータ契約は`decks/_template/README.md`を参照してください。`NEW_DECK_TEMPLATE.md`はDeck 02の制作方針を決める際にCARD CORE方式へ全面更新する予定です。
+HTML、CSS、アプリ本体、Service WorkerへDeck 02のパスを追記する必要はありません。制作仕様は `NEW_DECK_TEMPLATE.md`、ファイル配置の最小契約は `decks/_template/README.md` を参照してください。
 
 ## カード画像と確認用一覧の再生成
 
